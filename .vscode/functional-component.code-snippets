@@ -1,0 +1,20 @@
+{
+  "Componente Funcional para React native": {
+    "scope": "javascript,typescript,typescriptreact",
+    "prefix": "compfunc",
+    "body": [
+      "import { Text, View } from 'react-native';",
+      "",
+      "import { styles } from './style';",
+      "",
+      "export default function $1() {",
+      "  return (",
+      "    <View>",
+      "      <Text>$2</Text>",
+      "    </View>",
+      "  );",
+      "}"
+    ],
+    "description": "inicia um componente funcional em react native"
+  }
+}

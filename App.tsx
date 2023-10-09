@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useCallback } from "react";
+import { StyleSheet, SafeAreaView, View, Text } from "react-native";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { NavigationContainer } from "@react-navigation/native";
+import InitialRoutes from "./src/routes/InitialRoutes";
+
+// SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+
+  // const [fontsLoaded] = useFonts({
+  //   "Light-300": require("./src/assets/fonts/OpenSans-Light.ttf"),
+  //   "Regular-400": require("./src/assets/fonts/OpenSans-Regular.ttf"),
+  //   "Medium-500": require("./src/assets/fonts/OpenSans-Medium.ttf"),
+  //   "SemiBold-600": require("./src/assets/fonts/OpenSans-SemiBold.ttf"),
+  //   "Bold-700": require("./src/assets/fonts/OpenSans-Bold.ttf"),
+  //   "ExtraBold-800": require("./src/assets/fonts/OpenSans-ExtraBold.ttf"),
+  // });
+
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
+
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <InitialRoutes />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

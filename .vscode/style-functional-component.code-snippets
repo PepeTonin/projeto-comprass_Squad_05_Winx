@@ -1,0 +1,16 @@
+{
+  "Styles para component funcional em react native": {
+    "scope": "javascript,typescript,typescriptreact",
+    "prefix": "compstyle",
+    "body": [
+      "import { StyleSheet } from 'react-native';",
+      "",
+      "export const styles = StyleSheet.create({",
+      "  container: {",
+      "    flex: 1",
+      "  }",
+      "});",
+    ],
+    "description": "padrão para iniciar um arquivo de style para um componente"
+  }
+}
