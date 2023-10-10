@@ -4,6 +4,6 @@ export const styles = StyleSheet.create({
   text: {
     color: colors.black,
     fontSize: fontSizes.xl,
-    fontFamily: fontFamilies.boldOpenSans,
+    fontFamily: fontFamilies.semiBoldOpenSans,
   },
 });

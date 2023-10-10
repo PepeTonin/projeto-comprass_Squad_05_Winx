@@ -19,7 +19,7 @@ export default function SuccessContinue({
 }: LoggedCheckoutScreenNavigationProp) {
   return (
     <View style={styles.container}>
-      <Tittle>Sucess</Tittle>
+      <Tittle>Success!</Tittle>
       <Text>Success Continue Screen</Text>
       <Button
         title="continue"
