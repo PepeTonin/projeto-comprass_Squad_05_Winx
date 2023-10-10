@@ -7,7 +7,10 @@ const Stack = createNativeStackNavigator();
 export default function CartRoutes() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="VerifyAuthForCheckout" component={VerifyAuthForCheckout} />
+      <Stack.Screen
+        name="VerifyAuthForCheckout"
+        component={VerifyAuthForCheckout}
+      />
     </Stack.Navigator>
   );
 }

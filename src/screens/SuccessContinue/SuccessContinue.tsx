@@ -1,7 +1,8 @@
-import { Text, View, Button } from "react-native";
+import { Text, ImageBackground, SafeAreaView, View } from "react-native";
+import Button from "../../components/shared/Button/Button";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-
 import { styles } from "./style";
+import Tittle from "../../components/shared/Tittle/Tittle";
 
 type LoggedCheckoutStackParamList = {
   LoggedCheckout: any;
@@ -17,14 +18,23 @@ export default function SuccessContinue({
   navigation,
 }: LoggedCheckoutScreenNavigationProp) {
   return (
-    <View style={styles.container}>
-      <Text>Success Continue Screen</Text>
-      <Button
-        title="continue"
-        onPress={() => {
-          navigation.navigate("SuccessEnd");
-        }}
-      />
-    </View>
+    <ImageBackground
+      source={require("../../assets/img/succesContinueBackground.png")}
+      style={styles.container}
+    >
+      <View style={styles.contentContainer}>
+        <Tittle>Success!</Tittle>
+        <Text style={styles.message}>
+          Your order will be delivered soon. Thank you for choosing our app!
+        </Text>
+        <Button
+          title="Continue"
+          onPress={() => {
+            navigation.navigate("SuccessEnd");
+          }}
+          style={styles.button}
+        />
+      </View>
+    </ImageBackground>
   );
 }
