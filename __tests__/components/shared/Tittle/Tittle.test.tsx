@@ -1,6 +1,5 @@
 import React from "react";
 import Tittle from "../../../../src/components/shared/Tittle/Tittle";
-import renderer from "react-test-renderer";
 import { render, screen } from "@testing-library/react-native";
 describe("<Tittle />", () => {
   it("should be defined", async () => {
