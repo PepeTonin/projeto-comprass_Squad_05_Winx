@@ -2,6 +2,7 @@ import { Text, View, Button } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
+import Tittle from "../../components/shared/Tittle/Tittle";
 
 type LoggedCheckoutStackParamList = {
   LoggedCheckout: any;
@@ -18,6 +19,7 @@ export default function SuccessContinue({
 }: LoggedCheckoutScreenNavigationProp) {
   return (
     <View style={styles.container}>
+      <Tittle>Sucess</Tittle>
       <Text>Success Continue Screen</Text>
       <Button
         title="continue"
