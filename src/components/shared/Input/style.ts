@@ -3,12 +3,18 @@ import { colors } from "../../../styles/globalStyles";
 
 export const styles = StyleSheet.create({
   container: {
+    alignItems: "center",
+  },
+  boxInput: {
     width: 343,
     height: 64,
     marginBottom: 10,
     borderRadius: 12,
     backgroundColor: colors.white,
     flexDirection: "row",
+  },
+  inputDisable: {
+    backgroundColor: colors.gray_500,
   },
   label: {
     position: "absolute",
