@@ -7,8 +7,8 @@ const Tab = createBottomTabNavigator();
 
 export default function BottomTabRoutes() {
   return (
-    <Tab.Navigator initialRouteName="HomeTab" >
-      <Tab.Screen name="HomeTab" component={Home} />
+    <Tab.Navigator initialRouteName="HomeTab" screenOptions={{ headerShown: false }} >
+      <Tab.Screen name="HomeTab" component={Home}/>
       <Tab.Screen name="CartTab" component={Cart} />
       <Tab.Screen name="ProfileTab" component={Profile} />
     </Tab.Navigator>

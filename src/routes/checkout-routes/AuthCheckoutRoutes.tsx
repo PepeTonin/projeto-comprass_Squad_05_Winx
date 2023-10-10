@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 
 export default function AuthCheckoutRoutes() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="LoggedCheckout" component={LoggedCheckout} />
       <Stack.Screen name="AddShippingAddress" component={AddShippingAddress} />
       <Stack.Screen name="SuccessContinue" component={SuccessContinue} />
