@@ -1,17 +1,16 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home/Home';
-import Cart from '../screens/Cart/Cart';
-import Profile from '../screens/Profile/Profile';
-import HomeRoutes from './HomeRoutes';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import BottomTabRoutes from "./BottomTabRoutes";
+import HomeRoutes from "./HomeRoutes";
+import CartRoutes from "./CartRoutes";
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function InitialRoutes() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="HomeRoutes" component={HomeRoutes} />
-      <Tab.Screen name="Cart" component={Cart} />
-      <Tab.Screen name="Profile" component={Profile} />
-    </Tab.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen name="BottomTabRoutes" component={BottomTabRoutes} />
+      <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
+      <Stack.Screen name="CartRoutes" component={CartRoutes} />
+    </Stack.Navigator>
   );
 }

@@ -3,12 +3,13 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
 
-type HomeStackParamList = {
-  Home: any;
-  ProductDetails: any;
+type StackParamList = {
+  BottomTabRoutes: any;
+  HomeRoutes: any;
+  CartRoutes: any;
 };
 
-type HomeScreenNavigationProp = NativeStackScreenProps<HomeStackParamList>;
+type HomeScreenNavigationProp = NativeStackScreenProps<StackParamList>;
 
 export default function Home({ navigation }: HomeScreenNavigationProp) {
   return (
@@ -16,7 +17,7 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
       <Text>Home Screen</Text>
       <Button
         title="product card"
-        onPress={() => navigation.navigate("ProductDetails")}
+        onPress={() => navigation.navigate("HomeRoutes")}
       />
     </View>
   );
