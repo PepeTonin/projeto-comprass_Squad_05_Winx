@@ -24,7 +24,7 @@ export default function SuccessEnd({
       <Button
         title="continue shopping"
         onPress={() => {
-          navigation.navigate("BottomTabRoutes");
+          navigation.navigate("BottomTabRoutes", {screen: "HomeTab"});
         }}
       />
     </View>

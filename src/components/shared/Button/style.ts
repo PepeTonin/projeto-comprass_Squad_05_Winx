@@ -15,6 +15,10 @@ export const styles = StyleSheet.create({
     shadowColor: colors.red_500,
     backgroundColor: colors.red_500,
   },
+  buttonDisable: {
+    backgroundColor: colors.gray_900,
+    shadowColor: colors.gray_900
+  },
   buttonText: {
     color: colors.white,
     fontSize: 16,
