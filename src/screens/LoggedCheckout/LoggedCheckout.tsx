@@ -19,7 +19,7 @@ enum typeofPayment {
   bankslip,
 }
 let paymentMethod: typeofPayment;
-paymentMethod = typeofPayment.card;
+paymentMethod = typeofPayment.pix;
 export default function LoggedCheckout({
   navigation,
 }: LoggedCheckoutScreenNavigationProp) {
