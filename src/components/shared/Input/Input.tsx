@@ -50,7 +50,7 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
             {
               top: isFocused || text !== "" ? 5 : 20,
               fontSize: isFocused || text !== "" ? 12 : 15,
-              color: colors.gray_100,
+              color: colors.gray_500,
             },
           ]}
         >
@@ -90,7 +90,7 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
-        {props.secureTextEntry ? (
+        {props.secureTextEntry && props.editable ? (
           <Pressable onPress={onEyePress}>
             {isPasswordVisible ? (
               <Ionicons
