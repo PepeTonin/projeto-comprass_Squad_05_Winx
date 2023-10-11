@@ -3,7 +3,7 @@ import { Text, View, Pressable, Image } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
 import { styles } from "./style";
-import { colors } from "../../styles/globalStyles";
+import { colors } from "../../../styles/globalStyles";
 
 interface ProductCardProps {
   imageUrl: string[];
