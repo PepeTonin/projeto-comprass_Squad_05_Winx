@@ -1,13 +1,27 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../styles/globalStyles";
+import { colors, fontFamilies, fontSizes } from "../../styles/globalStyles";
 
 export const styles = StyleSheet.create({
-  componentContainer: {
-    backgroundColor: colors.black_800,
-    height: 374,
-  },
   backgroundImage: {
-    flex: 1,
-    justifyContent: "center",
+    height: 390,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  logo: {
+    marginBottom: 105,
+  },
+  bottomContainer: {
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginLeft: 16,
+    marginBottom: 16,
+  },
+  bottomText: {
+    fontFamily: fontFamilies.semiBoldOpenSans,
+    color: colors.white,
+    fontSize: fontSizes.s,
+    marginRight: 16,
   },
 });

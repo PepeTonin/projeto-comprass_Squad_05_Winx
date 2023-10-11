@@ -6,8 +6,11 @@ const Stack = createNativeStackNavigator();
 
 export default function CartRoutes() {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="VerifyAuthForCheckout" component={VerifyAuthForCheckout} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="VerifyAuthForCheckout"
+        component={VerifyAuthForCheckout}
+      />
     </Stack.Navigator>
   );
 }

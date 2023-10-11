@@ -3,6 +3,7 @@ import { colors, fontFamilies, fontSizes } from "../../styles/globalStyles";
 
 export const styles = StyleSheet.create({
   outerContainer: {
+    marginLeft: 16,
     width: 150,
   },
   topButtonsContainer: {

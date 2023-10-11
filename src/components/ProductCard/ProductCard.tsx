@@ -6,7 +6,7 @@ import { styles } from "./style";
 import { colors } from "../../styles/globalStyles";
 
 interface ProductCardProps {
-  imageUrl: string;
+  imageUrl: string[];
   onCardPress: () => void;
   productName: string;
   productDescription: string;
@@ -45,7 +45,7 @@ export default function ProductCard(props: ProductCardProps) {
         </Pressable>
       </View>
       <Pressable style={styles.imageContainer} onPress={props.onCardPress}>
-        <Image style={styles.image} source={{ uri: props.imageUrl }} />
+        <Image style={styles.image} source={{ uri: props.imageUrl[0] }} />
       </Pressable>
       <View style={styles.bottomContainer}>
         <Text style={styles.productName}>{props.productName}</Text>
