@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   boxInput: {
     width: 343,
     height: 64,
-    marginBottom: 10,
+    marginBottom: 17,
     borderRadius: 12,
     backgroundColor: colors.white,
     flexDirection: "row",

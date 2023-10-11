@@ -30,7 +30,7 @@ export default function SuccessContinue({
   console.log("paymentMethod");
   return (
     <ImageBackground
-      source={require("../../assets/img/succesContinueBackground.png")}
+      source={require("../../assets/app-images/succesContinueBackground.png")}
       style={styles.container}
     >
       <View style={styles.contentContainer}>

@@ -12,12 +12,13 @@ export const styles = StyleSheet.create({
     marginTop: 14,
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: colors.red_500,
     backgroundColor: colors.red_500,
+    shadowColor: colors.red_500,
+    elevation: 20,
   },
   buttonDisable: {
     backgroundColor: colors.gray_900,
-    shadowColor: colors.gray_900
+    shadowColor: colors.gray_900,
   },
   buttonText: {
     color: colors.white,

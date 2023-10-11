@@ -1,0 +1,17 @@
+import axios from "axios";
+
+export async function fetchProductsByCategoryId(categoryId: string) {
+  let url = `https://api.escuelajs.co/api/v1/categories/${categoryId}/products`;
+  const response = await axios.get(url);
+  return response.data;
+}
+
+export async function fetchCategoriesOneToFive() {
+  const data = [];
+  for (let i = 1; i <= 5; i++) {
+    let url = `https://api.escuelajs.co/api/v1/categories/${i}`;
+    let response = await axios.get(url);
+    data.push(response.data);
+  }
+  return data;
+}

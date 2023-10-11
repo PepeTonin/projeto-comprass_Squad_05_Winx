@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 
 export default function InitialRoutes() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="BottomTabRoutes" component={BottomTabRoutes} />
       <Stack.Screen name="HomeRoutes" component={HomeRoutes} />
       <Stack.Screen name="CartRoutes" component={CartRoutes} />
