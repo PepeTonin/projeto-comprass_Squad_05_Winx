@@ -3,7 +3,7 @@ import AuthCheckoutRoutes from "./AuthCheckoutRoutes";
 
 
 export default function VerifyAuthForCheckout() {
-  let isAuthenticated = true;
+  let isAuthenticated = false;
 
   return (
     <>

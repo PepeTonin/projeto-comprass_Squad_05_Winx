@@ -6,4 +6,7 @@ export const styles = StyleSheet.create({
     fontSize: fontSizes.xl,
     fontFamily: fontFamilies.semiBoldOpenSans,
   },
+  weight: {
+    fontFamily: fontFamilies.boldOpenSans,
+  },
 });
