@@ -3,6 +3,7 @@ import Button from "../../components/shared/Button/Button";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { styles } from "./style";
 import Tittle from "../../components/shared/Tittle/Tittle";
+import { useRoute } from "@react-navigation/native";
 
 type LoggedCheckoutStackParamList = {
   LoggedCheckout: any;
@@ -14,9 +15,19 @@ type LoggedCheckoutStackParamList = {
 type LoggedCheckoutScreenNavigationProp =
   NativeStackScreenProps<LoggedCheckoutStackParamList>;
 
+type PaymentMethodChoiceList = {
+  card: 1;
+  pix: 2;
+  bankslip: 3;
+};
+
 export default function SuccessContinue({
   navigation,
 }: LoggedCheckoutScreenNavigationProp) {
+  const route = useRoute();
+
+  const paymentMethod = route.params;
+  console.log("paymentMethod");
   return (
     <ImageBackground
       source={require("../../assets/img/succesContinueBackground.png")}
