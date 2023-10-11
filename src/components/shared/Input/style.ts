@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
   inputDisable: {
-    backgroundColor: colors.gray_500,
+    backgroundColor: colors.gray_100,
   },
   label: {
     position: "absolute",
