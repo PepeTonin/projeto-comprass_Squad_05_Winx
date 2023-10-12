@@ -5,6 +5,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
 
 import InitialRoutes from "./src/routes/InitialRoutes";
+import TokenProvider from "./src/contexts/authJWTContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,7 +32,9 @@ export default function App() {
   return (
     <SafeAreaView onLayout={onLayoutRootView} style={styles.rootAppContainer}>
       <NavigationContainer>
-        <InitialRoutes />
+        <TokenProvider>
+          <InitialRoutes />
+        </TokenProvider>
       </NavigationContainer>
     </SafeAreaView>
   );

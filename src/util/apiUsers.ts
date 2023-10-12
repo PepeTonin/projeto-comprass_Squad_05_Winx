@@ -31,7 +31,7 @@ export async function signUp(props: PropsWithChildren<PropsUser>) {
 
 export async function signIn(props: PropsWithChildren<PropsUser>) {
   let usersUrl = `https://api.escuelajs.co/api/v1/users`;
-
+ 
   try {
     const response = await axios.get(usersUrl);
 
@@ -42,10 +42,24 @@ export async function signIn(props: PropsWithChildren<PropsUser>) {
         return user.email === props.email && user.password === props.password;
       });
 
-      if (userWithMatchingCredentials) {
-        alert(
-          "Login bem-sucedido. ID do usuário: " + userWithMatchingCredentials.id
-        );
+      if (userWithMatchingCredentials !== undefined) {
+        try {
+          let authUrl = `https://api.escuelajs.co/api/v1/auth/login`;
+          const data = {
+            email: props.email,
+            password: props.password,
+          };
+
+          const response = await axios.post(authUrl, data);
+          if (response.status === 201) {
+            const access_token = response.data.access_token;
+            return access_token
+          } else {
+            alert("Não foi possível capturar o token");
+          }
+        } catch (error: any) {
+          alert(error);
+        }
       } else {
         alert("Falha ao fazer login. Verifique seu email e senha");
       }
