@@ -5,6 +5,7 @@ import { styles } from "./style";
 import Button from "../../components/shared/Button/Button";
 import AuthInput from "../../components/shared/Input/Input";
 import { useState } from "react";
+import { signIn } from "../../util/apiUsers";
 
 type NonAuthStackParamList = {
   NotLoggedCheckout: any;
@@ -22,6 +23,14 @@ type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 export default function Login({ navigation }: NavigationProp) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSignIn = async () => {
+    try {
+      await signIn({ email, password });
+    } catch (error: any) {
+      alert("Erro durante o registro" + error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -56,6 +65,7 @@ export default function Login({ navigation }: NavigationProp) {
             style={styles.button}
             title="LOGIN"
             onPress={() => {
+              handleSignIn();
               navigation.navigate("BottomTabRoutes");
             }}
           />
