@@ -12,7 +12,15 @@ interface ButtonProps extends TouchableOpacityProps {
 export default function Button(props: ButtonProps) {
   return (
     <View style={styles.container}>
-      <Pressable style={[styles.button, props.style, props.disable && styles.buttonDisable ]} disabled={props.disable} onPress={props.onPress}>
+      <Pressable
+        style={[
+          styles.button,
+          props.style,
+          props.disable && styles.buttonDisable,
+        ]}
+        disabled={props.disable}
+        onPress={props.onPress}
+      >
         <Text style={styles.buttonText}>{props.title}</Text>
       </Pressable>
     </View>

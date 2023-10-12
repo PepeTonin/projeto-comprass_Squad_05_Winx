@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   text: {
     color: colors.black,
     fontSize: fontSizes.xl,
-    fontFamily: fontFamilies.semiBoldOpenSans,
+    fontFamily: fontFamilies.boldOpenSans,
   },
   weight: {
     fontFamily: fontFamilies.boldOpenSans,

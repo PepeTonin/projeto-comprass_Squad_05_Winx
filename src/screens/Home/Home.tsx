@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { Text, View, FlatList } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Ionicons } from "@expo/vector-icons";
 
 import { fetchCategoriesOneToFive } from "../../util/apiRequests";
-import HomeSection from "../../components/HomeSection/HomeSection";
+import HomeSection from "../../components/home-screen/HomeSection/HomeSection";
 import { styles } from "./style";
-import { colors } from "../../styles/globalStyles";
-import HomeHeader from "../../components/HomeHeader/HomeHeader";
+import HomeHeader from "../../components/home-screen/HomeHeader/HomeHeader";
+import SearchButton from "../../components/home-screen/SearchButton/SearchButton";
+import HomeProfileHeader from "../../components/home-screen/HomeProfileHeader/HomeProfileHeader";
 
 type StackParamList = {
   BottomTabRoutes: any;
@@ -43,25 +43,26 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
     navigation.navigate("HomeRoutes");
   }
 
-  let isAuthenticated = false;
+  let isAuthenticated = true;
 
   return (
     <View style={styles.container}>
       <View style={styles.stickyHeader}>
-        <Text
-          style={{ color: "white", position: "absolute", top: 60, left: 16 }}
-        >
-          {isAuthenticated ? "Logged in" : "Not logged in"}
-        </Text>
+        {isAuthenticated ? (
+          <HomeProfileHeader
+            userImageUrl={"https://i.imgur.com/nZnWUc0.jpeg"}
+            userName={"Jhon"}
+          />
+        ) : null}
 
-        <View style={styles.searchButtonContainer}>
-          <Ionicons name="search" size={22} color={colors.white} />
-        </View>
+        <SearchButton />
       </View>
 
       <FlatList
         style={{ zIndex: -1 }}
         ListHeaderComponent={HomeHeader}
+        ListFooterComponent={<View></View>}
+        ListFooterComponentStyle={{marginVertical: 15}}
         showsVerticalScrollIndicator={false}
         data={data}
         keyExtractor={(item) => item.id.toString()}

@@ -15,3 +15,9 @@ export async function fetchCategoriesOneToFive() {
   }
   return data;
 }
+
+export async function fetchProductsFilteredByTitle(title: string) {
+  let url = `https://api.escuelajs.co/api/v1/products/?title=${title}&offset=0&limit=3`;
+  const response = await axios.get(url);
+  return response.data;
+}

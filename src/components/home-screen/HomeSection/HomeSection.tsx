@@ -3,7 +3,7 @@ import { Text, View, FlatList } from "react-native";
 
 import { styles } from "./style";
 import ProductCard from "../ProductCard/ProductCard";
-import { fetchProductsByCategoryId } from "../../util/apiRequests";
+import { fetchProductsByCategoryId } from "../../../util/apiRequests";
 
 interface HomeSectionProps {
   onCardPress: () => void;

@@ -9,6 +9,7 @@ type LoggedCheckoutStackParamList = {
   AddShippingAddress: any;
   SuccessContinue: any;
   SuccessEnd: any;
+  SuccessEndCardPayment: any;
 };
 
 type LoggedCheckoutScreenNavigationProp =
@@ -16,7 +17,10 @@ type LoggedCheckoutScreenNavigationProp =
 
 export default function SuccessContinue({
   navigation,
+  route,
 }: LoggedCheckoutScreenNavigationProp) {
+  const paymentMethod = route.params;
+
   return (
     <ImageBackground
       source={require("../../assets/app-images/succesContinueBackground.png")}
@@ -30,7 +34,7 @@ export default function SuccessContinue({
         <Button
           title="Continue"
           onPress={() => {
-            navigation.navigate("SuccessEnd");
+            navigation.navigate("SuccessEnd", paymentMethod);
           }}
           style={styles.button}
         />

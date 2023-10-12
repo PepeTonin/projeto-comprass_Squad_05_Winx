@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   contentContainer: {
-    paddingTop: height * 0.141,
+    paddingTop: paddingTopContentContainer,
     alignItems: "center",
     justifyContent: "space-between",
   },

@@ -13,6 +13,13 @@ type LoggedCheckoutStackParamList = {
 type LoggedCheckoutScreenNavigationProp =
   NativeStackScreenProps<LoggedCheckoutStackParamList>;
 
+enum typeofPayment {
+  card,
+  pix,
+  bankslip,
+}
+let paymentMethod: typeofPayment;
+paymentMethod = typeofPayment.bankslip;
 export default function LoggedCheckout({
   navigation,
 }: LoggedCheckoutScreenNavigationProp) {
@@ -32,7 +39,7 @@ export default function LoggedCheckout({
       <Button
         title="submit order"
         onPress={() => {
-          navigation.navigate("SuccessContinue");
+          navigation.navigate("SuccessContinue", paymentMethod);
         }}
       />
     </View>
