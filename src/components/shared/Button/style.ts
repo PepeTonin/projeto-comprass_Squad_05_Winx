@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../../styles/globalStyles";
+import { colors, fontFamilies, fontSizes } from "../../../styles/globalStyles";
 
 export const styles = StyleSheet.create({
   container: {
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.white,
-    fontSize: 16,
-    fontWeight: "800",
+    fontFamily: fontFamilies.extraBoldOpenSans,
+    fontSize: fontSizes.s,
   },
 });

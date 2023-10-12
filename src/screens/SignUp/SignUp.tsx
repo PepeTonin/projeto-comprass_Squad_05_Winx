@@ -91,7 +91,7 @@ export default function SignUp({ navigation }: NavigationProp) {
             title="SIGN UP"
             onPress={() => {
               handleSignUp();
-              navigation.navigate("BottomTabRoutes");
+              navigation.navigate("Login");
             }}
           />
         </View>

@@ -90,7 +90,7 @@ export default function Login({ navigation }: NavigationProp) {
           </Pressable>
           <Pressable
             onPress={() => {
-              navigation.navigate("HomeRoutes");
+              navigation.navigate("BottomTabRoutes");
             }}
           >
             <Text style={styles.textButton}>I don't want to register</Text>
