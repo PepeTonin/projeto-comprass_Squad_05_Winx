@@ -39,8 +39,11 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
     getCategories();
   }, []);
 
-  function onCardPress() {
-    navigation.navigate("HomeRoutes");
+  function onCardPress(id: number) {
+    navigation.navigate("HomeRoutes", {
+      screen: "ProductDetails",
+      params: { productId: id },
+    });
   }
 
   let isAuthenticated = true;
@@ -55,14 +58,14 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
           />
         ) : null}
 
-        <SearchButton />
+        <SearchButton onCardPress={onCardPress} />
       </View>
 
       <FlatList
         style={{ zIndex: -1 }}
         ListHeaderComponent={HomeHeader}
         ListFooterComponent={<View></View>}
-        ListFooterComponentStyle={{marginVertical: 15}}
+        ListFooterComponentStyle={{ marginVertical: 15 }}
         showsVerticalScrollIndicator={false}
         data={data}
         keyExtractor={(item) => item.id.toString()}

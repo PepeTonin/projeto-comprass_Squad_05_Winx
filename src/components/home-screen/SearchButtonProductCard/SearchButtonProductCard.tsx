@@ -1,14 +1,16 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Pressable } from "react-native";
 
 import { styles } from "./style";
 
 interface SearchButtonProductCardProps {
+  productId: number;
   imageUrl: string[];
   productName: string;
   productDescription: string;
   productPrice: number;
   dataLength: number;
   index: number;
+  onCardPress: (id: number) => void;
 }
 
 export default function SearchButtonProductCard(
@@ -19,11 +21,14 @@ export default function SearchButtonProductCard(
   }
 
   return (
-    <View
+    <Pressable
+      onPress={() => props.onCardPress(props.productId)}
       style={[
         styles.container,
         props.dataLength === 3 && props.index === 1 && styles.middleContainer,
-        props.dataLength === 2 && props.index === 0 && styles.firstContainerWhenThereAreJustTwoProducts,
+        props.dataLength === 2 &&
+          props.index === 0 &&
+          styles.firstContainerWhenThereAreJustTwoProducts,
       ]}
     >
       <View>
@@ -40,6 +45,6 @@ export default function SearchButtonProductCard(
           {numberToTwoDecimalPlacesString(props.productPrice)} R$
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }

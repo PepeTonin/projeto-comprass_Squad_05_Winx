@@ -6,7 +6,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import { fetchProductsByCategoryId } from "../../../util/apiRequests";
 
 interface HomeSectionProps {
-  onCardPress: () => void;
+  onCardPress: (id: number) => void;
   categoryId: number;
   categoryName: string;
 }
@@ -38,7 +38,6 @@ export default function HomeSection(props: HomeSectionProps) {
 
   return (
     <View style={styles.outerContainer}>
-
       <View style={styles.titleContainer}>
         <Text style={styles.categoryName}>{props.categoryName}</Text>
         <Text style={styles.viewAll}>View all</Text>
@@ -51,6 +50,7 @@ export default function HomeSection(props: HomeSectionProps) {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <ProductCard
+            productId={item.id}
             productDescription={item.description}
             productName={item.title}
             productPrice={item.price}
@@ -59,7 +59,6 @@ export default function HomeSection(props: HomeSectionProps) {
           />
         )}
       />
-
     </View>
   );
 }

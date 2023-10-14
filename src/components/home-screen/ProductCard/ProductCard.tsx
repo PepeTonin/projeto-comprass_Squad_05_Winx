@@ -7,7 +7,8 @@ import { colors } from "../../../styles/globalStyles";
 
 interface ProductCardProps {
   imageUrl: string[];
-  onCardPress: () => void;
+  onCardPress: (id: number) => void;
+  productId: number;
   productName: string;
   productDescription: string;
   productPrice: number;
@@ -44,7 +45,10 @@ export default function ProductCard(props: ProductCardProps) {
           <Entypo name="plus" size={24} color={colors.white} />
         </Pressable>
       </View>
-      <Pressable style={styles.imageContainer} onPress={props.onCardPress}>
+      <Pressable
+        style={styles.imageContainer}
+        onPress={() => props.onCardPress(props.productId)}
+      >
         <Image style={styles.image} source={{ uri: props.imageUrl[0] }} />
       </Pressable>
       <View style={styles.bottomContainer}>

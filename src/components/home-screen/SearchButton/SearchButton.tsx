@@ -7,6 +7,10 @@ import { colors } from "../../../styles/globalStyles";
 import { fetchProductsFilteredByTitle } from "../../../util/apiRequests";
 import SearchButtonProductCard from "../SearchButtonProductCard/SearchButtonProductCard";
 
+interface SearchButtonProps {
+  onCardPress: (id: number) => void;
+}
+
 interface ItemData {
   id: number;
   title: string;
@@ -15,7 +19,7 @@ interface ItemData {
   images: string[];
 }
 
-export default function SearchButton() {
+export default function SearchButton(props: SearchButtonProps) {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [text, setText] = useState<string>("");
   const [callGetProducts, setCallGetProducts] = useState<boolean>(false);
@@ -46,10 +50,10 @@ export default function SearchButton() {
     }
   }, [text]);
 
-  const handlePress = () => {
+  function handlePress() {
     setIsClicked((cur) => !cur);
     setText("");
-  };
+  }
 
   return (
     <Pressable onPress={handlePress} style={styles.container}>
@@ -72,12 +76,14 @@ export default function SearchButton() {
             keyExtractor={(item) => item.id.toString()}
             renderItem={({ item, index }) => (
               <SearchButtonProductCard
+                onCardPress={props.onCardPress}
                 imageUrl={item.images}
                 productName={item.title}
                 productDescription={item.description}
                 productPrice={item.price}
                 dataLength={data.length}
                 index={index}
+                productId={item.id}
               />
             )}
           />
