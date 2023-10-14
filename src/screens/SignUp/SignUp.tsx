@@ -3,10 +3,32 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
 import AuthInput from "../../components/shared/Input/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../components/shared/Button/Button";
 import Tittle from "../../components/shared/Tittle/Tittle";
 import { signUp } from "../../util/apiUsers";
+import * as yup from "yup";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object({
+  name: yup
+    .string()
+    .required("Your name is not valid, use only letters and numbers"),
+  email: yup.string().required("").email("Your email is not valid"),
+  password: yup
+    .string()
+    .min(6, "Your password must be longer than 6 digits.")
+    .required("Please complete all fields"),
+  confirmPassword: yup
+    .string()
+    .min(6, "Your password must be longer than 6 digits.")
+    .oneOf(
+      [yup.ref("password")],
+      "Your password is not the same as your confirmation"
+    )
+    .required("Please complete all fields"),
+});
 
 type NonAuthStackParamList = {
   NotLoggedCheckout: any;
@@ -22,17 +44,53 @@ type NonAuthStackParamList = {
 type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 
 export default function SignUp({ navigation }: NavigationProp) {
-  const [name, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [validPassword, setValidPassword] = useState(false);
 
-  const handleSignUp = async () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const handleConfirmPassword = (data: any) => {
+    if (!(data.password === data.confirmPassword)) {
+      <Text style={styles.errorMessage}>
+        {errors.confirmPassword?.message}
+      </Text>;
+    } else {
+      return setValidPassword(true);
+    }
+  };
+
+  const handleSignUp = async (data: any) => {
     try {
-      await signUp({ name, email, password });
+      await signUp(data);
+      navigation.navigate("Login");
     } catch (error: any) {
       alert("Erro durante o registro" + error);
     }
   };
+
+  const fullSignUp = async () => {
+    if (
+      !(
+        errors.name ||
+        errors.email ||
+        errors.password ||
+        errors.confirmPassword
+      )
+    ) {
+      await handleSubmit(handleConfirmPassword)();
+    }
+  };
+
+  useEffect(() => {
+    if (validPassword) {
+      handleSubmit(handleSignUp)();
+    }
+  }, [validPassword]);
 
   return (
     <View style={styles.container}>
@@ -53,47 +111,82 @@ export default function SignUp({ navigation }: NavigationProp) {
       </View>
 
       <View style={styles.forms}>
-        <AuthInput
-          label="Name"
-          value={name}
-          autoCapitalize="none"
-          onChangeText={(text) => setNome(text)}
-          keyboardType="email-address"
-          editable={true}
-        />
-        <AuthInput
-          label="Email"
-          value={email}
-          autoCapitalize="none"
-          onChangeText={(text) => setEmail(text)}
-          keyboardType="email-address"
-          editable={true}
-        />
-        <AuthInput
-          label="Password"
-          value={password}
-          autoCapitalize="none"
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry={true}
-          editable={true}
-        />
-        <AuthInput
-          label="Confirm Password"
-          value={password}
-          autoCapitalize="none"
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry={true}
-          editable={true}
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { onChange, value } }) => (
+            <AuthInput
+              label="Name"
+              value={value}
+              autoCapitalize="none"
+              onChangeText={onChange}
+              keyboardType="email-address"
+              editable={true}
+              error={errors.name ? true : false}
+            />
+          )}
         />
 
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, value } }) => (
+            <AuthInput
+              label="Email"
+              value={value}
+              autoCapitalize="none"
+              onChangeText={onChange}
+              keyboardType="email-address"
+              editable={true}
+              error={errors.email ? true : false}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, value } }) => (
+            <AuthInput
+              label="Password"
+              value={value}
+              autoCapitalize="none"
+              onChangeText={onChange}
+              secureTextEntry={true}
+              editable={true}
+              error={errors.password ? true : false}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="confirmPassword"
+          render={({ field: { onChange, value } }) => (
+            <AuthInput
+              label="Confirm Password"
+              value={value}
+              autoCapitalize="none"
+              onChangeText={onChange}
+              secureTextEntry={true}
+              editable={true}
+              error={errors.confirmPassword ? true : false}
+            />
+          )}
+        />
+
+        {(errors.name ||
+          errors.email ||
+          errors.password ||
+          errors.confirmPassword) && (
+          <Text style={styles.errorMessage}>
+            {errors.name?.message ||
+              errors.email?.message ||
+              errors.password?.message ||
+              errors.confirmPassword?.message}
+          </Text>
+        )}
+
         <View style={styles.buttons}>
-          <Button
-            title="SIGN UP"
-            onPress={() => {
-              handleSignUp();
-              navigation.navigate("Login");
-            }}
-          />
+          <Button title="SIGN UP" onPress={fullSignUp} />
         </View>
       </View>
     </View>

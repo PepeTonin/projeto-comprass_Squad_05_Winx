@@ -7,6 +7,17 @@ import AuthInput from "../../components/shared/Input/Input";
 import React, { useContext, useState } from "react";
 import { signIn } from "../../util/apiUsers";
 import { TokenContext } from "../../contexts/authJWTContext";
+import * as yup from "yup";
+import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object({
+  email: yup.string().required("").email("Your email or password is incorrect"),
+  password: yup
+    .string()
+    .min(6, "Your password must be longer than 6 digits.")
+    .required("Please complete all fields"),
+});
 
 type NonAuthStackParamList = {
   NotLoggedCheckout: any;
@@ -22,14 +33,23 @@ type NonAuthStackParamList = {
 type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 
 export default function Login({ navigation }: NavigationProp) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [signInSuccess, setSignInSuccess] = useState(false);
   const { receiveToken } = useContext(TokenContext);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (data: any) => {
     try {
-      const token = await signIn({ email, password });
+      const token = await signIn(data);
       receiveToken(token);
+      if (token) {
+        setSignInSuccess(true);
+      }
     } catch (error: any) {
       alert("Erro durante o registro" + error);
     }
@@ -47,29 +67,56 @@ export default function Login({ navigation }: NavigationProp) {
         source={require("../../assets/app-images/compass.png")}
       />
       <View style={styles.forms}>
-        <AuthInput
-          label="Email"
-          value={email}
-          autoCapitalize="none"
-          onChangeText={(text) => setEmail(text)}
-          keyboardType="email-address"
-          editable={true}
+        <Controller
+          control={control}
+          name="email"
+          render={({ field: { onChange, value } }) => (
+            <AuthInput
+              label="Email"
+              value={value}
+              autoCapitalize="none"
+              onChangeText={onChange}
+              keyboardType="email-address"
+              editable={true}
+              error={errors.email ? true : false}
+            />
+          )}
         />
-        <AuthInput
-          label="Password"
-          value={password}
-          autoCapitalize="none"
-          onChangeText={(text) => setPassword(text)}
-          secureTextEntry={true}
-          editable={true}
+
+        <Controller
+          control={control}
+          name="password"
+          render={({ field: { onChange, value } }) => (
+            <AuthInput
+              label="Password"
+              value={value}
+              autoCapitalize="none"
+              onChangeText={onChange}
+              secureTextEntry={true}
+              editable={true}
+              error={errors.password ? true : false}
+            />
+          )}
         />
+        {(errors.password || errors.email) && (
+          <Text style={styles.errorMessage}>
+            {errors.password?.message || errors.email?.message}
+          </Text>
+        )}
+
         <View style={styles.buttons}>
           <Button
             style={styles.button}
             title="LOGIN"
             onPress={() => {
-              handleSignIn();
-              navigation.navigate("BottomTabRoutes");
+              if (errors.email || errors.password) {
+                alert("erro");
+              } else {
+                handleSubmit(handleSignIn)();
+                if (signInSuccess) {
+                  navigation.navigate("BottomTabRoutes");
+                }
+              }
             }}
           />
           <Pressable

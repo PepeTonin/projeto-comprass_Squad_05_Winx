@@ -19,11 +19,8 @@ export async function signUp(props: PropsWithChildren<PropsUser>) {
     };
     const response = await axios.post(url, data);
 
-    if (response.status === 201) {
-      alert("User cadastrado");
-    } else {
-      alert("Falha ao cadastrar o usuario");
-    }
+    // if (response.status === 201) {
+    // }
   } catch (error: any) {
     alert("Erro ao fazer a solicitação" + error);
   }
@@ -31,7 +28,7 @@ export async function signUp(props: PropsWithChildren<PropsUser>) {
 
 export async function signIn(props: PropsWithChildren<PropsUser>) {
   let usersUrl = `https://api.escuelajs.co/api/v1/users`;
- 
+
   try {
     const response = await axios.get(usersUrl);
 
@@ -53,7 +50,7 @@ export async function signIn(props: PropsWithChildren<PropsUser>) {
           const response = await axios.post(authUrl, data);
           if (response.status === 201) {
             const access_token = response.data.access_token;
-            return access_token
+            return access_token;
           } else {
             alert("Não foi possível capturar o token");
           }
@@ -90,7 +87,7 @@ export async function checkEmail(props: PropsWithChildren<PropsUser>) {
     }
   } catch (error: any) {
     alert("Erro ao fazer a solicitação" + error);
-    return null;
+    return true;
   }
 }
 

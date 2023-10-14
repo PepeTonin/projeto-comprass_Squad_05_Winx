@@ -28,12 +28,12 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
   },
   errorInput: {
-    borderColor: "red",
-    borderWidth: 1,
-    marginHorizontal: 0,
+    borderColor: colors.red_200,
+    borderWidth: 2,
+    borderRadius: 10,
   },
   icon: {
-    top: 20,
+    top: 19,
     right: 20,
   },
 });

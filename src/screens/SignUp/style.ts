@@ -33,4 +33,11 @@ export const styles = StyleSheet.create({
   buttons: {
     top: 30,
   },
+  errorMessage: {
+    textAlign: "left",
+    bottom: 10,
+    left: 18,
+    fontSize: fontSizes.xs,
+    color: colors.red_200,
+  },
 });
