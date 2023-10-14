@@ -4,7 +4,9 @@ import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { styles } from "./style";
 import Button from "../../components/shared/Button/Button";
 import AuthInput from "../../components/shared/Input/Input";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { signIn } from "../../util/apiUsers";
+import { TokenContext } from "../../contexts/authJWTContext";
 
 type NonAuthStackParamList = {
   NotLoggedCheckout: any;
@@ -22,6 +24,16 @@ type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 export default function Login({ navigation }: NavigationProp) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { receiveToken } = useContext(TokenContext);
+
+  const handleSignIn = async () => {
+    try {
+      const token = await signIn({ email, password });
+      receiveToken(token);
+    } catch (error: any) {
+      alert("Erro durante o registro" + error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -56,6 +68,7 @@ export default function Login({ navigation }: NavigationProp) {
             style={styles.button}
             title="LOGIN"
             onPress={() => {
+              handleSignIn();
               navigation.navigate("BottomTabRoutes");
             }}
           />

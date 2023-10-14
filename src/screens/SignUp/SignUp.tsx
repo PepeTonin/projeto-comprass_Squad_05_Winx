@@ -6,6 +6,7 @@ import AuthInput from "../../components/shared/Input/Input";
 import { useState } from "react";
 import Button from "../../components/shared/Button/Button";
 import Tittle from "../../components/shared/Tittle/Tittle";
+import { signUp } from "../../util/apiUsers";
 
 type NonAuthStackParamList = {
   NotLoggedCheckout: any;
@@ -25,6 +26,14 @@ export default function SignUp({ navigation }: NavigationProp) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSignUp = async () => {
+    try {
+      await signUp({ name, email, password });
+    } catch (error: any) {
+      alert("Erro durante o registro" + error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -33,7 +42,9 @@ export default function SignUp({ navigation }: NavigationProp) {
       />
 
       <View style={styles.texts}>
-        <Tittle style={styles.textTitle} weight="700">Sign Up</Tittle>
+        <Tittle style={styles.textTitle} weight="700">
+          Sign Up
+        </Tittle>
         <Text style={styles.text}>
           Choose a really cool name that only contains {"\n"}spaces as special
           characters. Oh, and your {"\n"}password must have more than 4 digits!
@@ -46,7 +57,7 @@ export default function SignUp({ navigation }: NavigationProp) {
           label="Name"
           value={name}
           autoCapitalize="none"
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={(text) => setNome(text)}
           keyboardType="email-address"
           editable={true}
         />
@@ -79,7 +90,8 @@ export default function SignUp({ navigation }: NavigationProp) {
           <Button
             title="SIGN UP"
             onPress={() => {
-              navigation.navigate("BottomTabRoutes");
+              handleSignUp();
+              navigation.navigate("Login");
             }}
           />
         </View>

@@ -8,6 +8,7 @@ import { styles } from "./style";
 import HomeHeader from "../../components/home-screen/HomeHeader/HomeHeader";
 import SearchButton from "../../components/home-screen/SearchButton/SearchButton";
 import HomeProfileHeader from "../../components/home-screen/HomeProfileHeader/HomeProfileHeader";
+import Splash from "../Splash/Splash";
 
 type StackParamList = {
   BottomTabRoutes: any;
@@ -23,12 +24,15 @@ interface ItemData {
 }
 
 export default function Home({ navigation }: HomeScreenNavigationProp) {
+  const [initializing, setInitializing] = useState<boolean>();
+
   const [data, setData] = useState<ItemData[]>([]);
 
   async function getCategories() {
     try {
       const response = await fetchCategoriesOneToFive();
       setData(response);
+      setInitializing(false);
     } catch (error) {
       // TO DO: HANDLE THIS ERROR
       console.log("error: ", error);
@@ -36,6 +40,7 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
   }
 
   useEffect(() => {
+    setInitializing(true);
     getCategories();
   }, []);
 
@@ -47,6 +52,10 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
   }
 
   let isAuthenticated = true;
+
+  if (initializing) {
+    return <Splash />;
+  }
 
   return (
     <View style={styles.container}>
@@ -69,13 +78,17 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
         showsVerticalScrollIndicator={false}
         data={data}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <HomeSection
-            onCardPress={onCardPress}
-            categoryId={item.id}
-            categoryName={item.name}
-          />
-        )}
+        renderItem={({ item }) =>
+          initializing ? (
+            <Splash />
+          ) : (
+            <HomeSection
+              onCardPress={onCardPress}
+              categoryId={item.id}
+              categoryName={item.name}
+            />
+          )
+        }
       />
     </View>
   );

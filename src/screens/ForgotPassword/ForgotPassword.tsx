@@ -6,6 +6,7 @@ import AuthInput from "../../components/shared/Input/Input";
 import Tittle from "../../components/shared/Tittle/Tittle";
 import { useState } from "react";
 import Button from "../../components/shared/Button/Button";
+import { changePassword, checkEmail } from "../../util/apiUsers";
 
 type NonAuthStackParamList = {
   NotLoggedCheckout: any;
@@ -21,7 +22,33 @@ type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 
 export default function ForgotPassword({ navigation }: NavigationProp) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isEmailAvailable, setIsEmailAvailable] = useState(true);
+
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+    setIsEmailValid(!!text);
+  };
+
+  const handleCheckEmailInside = async () => {
+    try {
+      let emailIsInApi = await checkEmail({ email });
+      setIsEmailAvailable(emailIsInApi);
+    } catch (error: any) {
+      alert("Erro durante o registro" + error);
+    }
+  };
+
+  const handleChangePassword = async () => {
+    try {
+      await changePassword({ email, newPassword });
+    } catch (error: any) {
+      alert("Erro durante o registro" + error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -45,41 +72,42 @@ export default function ForgotPassword({ navigation }: NavigationProp) {
           label="Email"
           value={email}
           autoCapitalize="none"
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={handleEmailChange}
           keyboardType="email-address"
           editable={true}
         />
         <AuthInput
           label="New Password"
-          value={password}
+          value={newPassword}
           autoCapitalize="none"
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text) => setNewPassword(text)}
           secureTextEntry={true}
-          editable={false}
+          editable={isEmailAvailable == false ? true : false}
         />
         <AuthInput
           label="Confirm New Password"
-          value={password}
+          value={confirmNewPassword}
           autoCapitalize="none"
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={(text) => setConfirmNewPassword(text)}
           secureTextEntry={true}
-          editable={false}
+          editable={isEmailAvailable == false ? true : false}
         />
 
         <View style={styles.buttons}>
           <Button
             title="SEARCH"
             onPress={() => {
-              navigation.navigate("Login");
+              handleCheckEmailInside();
             }}
-            disable={true}
+            disable={isEmailValid == true ? false : true}
           />
           <Button
-            title="LOGIN"
+            title="CONFIRM"
             onPress={() => {
+              handleChangePassword();
               navigation.navigate("Login");
             }}
-            disable={true}
+            disable={isEmailAvailable == false ? false : true}
           />
         </View>
       </View>
