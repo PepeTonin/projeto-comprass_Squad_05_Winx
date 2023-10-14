@@ -12,7 +12,7 @@ interface PropsInput {
   secureTextEntry?: boolean;
   onChangeText?: (text: string) => void;
   keyboardType?: "default" | "numeric" | "email-address" | "phone-pad";
-  error?: string;
+  error?: boolean;
   editable: boolean;
 }
 
@@ -42,13 +42,14 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
           styles.boxInput,
           props.style,
           !props.editable && styles.inputDisable,
+          props.error ? styles.errorInput : null,
         ]}
       >
         <Text
           style={[
             styles.label,
             {
-              top: isFocused || text !== "" ? 5 : 20,
+              top: isFocused || text !== "" ? 6 : 19,
               fontSize: isFocused || text !== "" ? 12 : 15,
               color: colors.gray_500,
             },
@@ -74,8 +75,9 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
               />
             ))}
         </View> */}
+
         <TextInput
-          style={[styles.input, props.error ? styles.errorInput : null]}
+          style={styles.input}
           value={props.value}
           autoCapitalize={props.autoCapitalize}
           secureTextEntry={props.secureTextEntry && !isPasswordVisible}
@@ -90,6 +92,7 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
+
         {props.secureTextEntry && props.editable ? (
           <Pressable onPress={onEyePress}>
             {isPasswordVisible ? (

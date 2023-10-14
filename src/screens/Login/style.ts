@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors, fontFamilies } from "../../styles/globalStyles";
+import { colors, fontFamilies, fontSizes } from "../../styles/globalStyles";
 
 export const styles = StyleSheet.create({
   container: {
@@ -34,5 +34,11 @@ export const styles = StyleSheet.create({
   },
   signupText: {
     marginTop: 0,
+  },
+  errorMessage: {
+    textAlign: "left",
+    bottom: 10,
+    fontSize: fontSizes.xs,
+    color: colors.red_200,
   },
 });
