@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
     height: 375,
     top: 218,
   },
+  back: {
+    position: "absolute",
+    top: 48,
+    left: 10,
+  },
   texts: {
     top: 120,
     left: 18,
@@ -29,15 +34,31 @@ export const styles = StyleSheet.create({
   },
   forms: {
     top: 149,
+    alignItems: "center",
   },
   buttons: {
-    top: 29,
+    top: 177.6,
+    alignItems: "center",
   },
   errorMessage: {
-    textAlign: "left",
+    alignSelf: "flex-start",
     bottom: 10,
     left: 18,
     fontSize: fontSizes.xs,
     color: colors.red_200,
+  },
+  validInput: {
+    height: 68,
+    width: 347,
+    marginBottom: 14,
+    borderColor: colors.green_900,
+    borderWidth: 2,
+    borderRadius: 14,
+  },
+  footerForms: {
+    position: "absolute",
+    top: 243,
+    right: 80,
+    alignSelf: "flex-start",
   },
 });

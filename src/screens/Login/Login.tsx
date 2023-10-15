@@ -1,4 +1,4 @@
-import { Image, Pressable, Text, View } from "react-native";
+import { ActivityIndicator, Image, Pressable, Text, View } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
@@ -33,6 +33,7 @@ type NonAuthStackParamList = {
 type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 
 export default function Login({ navigation }: NavigationProp) {
+  const [loading, setLoading] = useState(false);
   const [signInSuccess, setSignInSuccess] = useState(false);
   const { receiveToken } = useContext(TokenContext);
   const {
@@ -44,6 +45,7 @@ export default function Login({ navigation }: NavigationProp) {
   });
 
   const handleSignIn = async (data: any) => {
+    setLoading(true);
     try {
       const token = await signIn(data);
       receiveToken(token);
@@ -52,6 +54,8 @@ export default function Login({ navigation }: NavigationProp) {
       }
     } catch (error: any) {
       alert("Erro durante o registro" + error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -105,43 +109,56 @@ export default function Login({ navigation }: NavigationProp) {
         )}
 
         <View style={styles.buttons}>
-          <Button
-            style={styles.button}
-            title="LOGIN"
-            onPress={() => {
-              if (errors.email || errors.password) {
-                alert("erro");
-              } else {
-                handleSubmit(handleSignIn)();
-                if (signInSuccess) {
-                  navigation.navigate("BottomTabRoutes");
-                }
+          {loading ? (
+            <Button
+              style={styles.button}
+              content={
+                loading ? (
+                  <ActivityIndicator size="large" color="#ffffff" />
+                ) : null
               }
-            }}
-          />
-          <Pressable
-            onPress={() => {
-              navigation.navigate("SignUp");
-            }}
-          >
-            <Text style={styles.textButton}>
-              Not have an account yet?{"\n"} Sign up
-            </Text>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-              navigation.navigate("ForgotPassword");
-            }}
-          >
-            <Text style={styles.textButton}>I forgot my password</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-              navigation.navigate("BottomTabRoutes");
-            }}
-          >
-            <Text style={styles.textButton}>I don't want to register</Text>
-          </Pressable>
+            />
+          ) : (
+            <>
+              <Button
+                style={styles.button}
+                title="LOGIN"
+                onPress={() => {
+                  if (errors.email || errors.password) {
+                    alert("erro");
+                  } else {
+                    handleSubmit(handleSignIn)();
+                    if (signInSuccess) {
+                      navigation.navigate("BottomTabRoutes");
+                    }
+                  }
+                }}
+              />
+              <Pressable
+                onPress={() => {
+                  navigation.navigate("SignUp");
+                }}
+              >
+                <Text style={styles.textButton}>
+                  Not have an account yet?{"\n"} Sign up
+                </Text>
+              </Pressable>
+              <Pressable
+                onPress={() => {
+                  navigation.navigate("ForgotPassword");
+                }}
+              >
+                <Text style={styles.textButton}>I forgot my password</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => {
+                  navigation.navigate("BottomTabRoutes");
+                }}
+              >
+                <Text style={styles.textButton}>I don't want to register</Text>
+              </Pressable>
+            </>
+          )}
         </View>
       </View>
     </View>

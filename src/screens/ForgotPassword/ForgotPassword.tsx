@@ -1,4 +1,4 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, ActivityIndicator } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
@@ -10,6 +10,8 @@ import { changePassword, checkEmail } from "../../util/apiUsers";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import BackButton from "../../components/shared/BackButton/BackButton";
+import { colors } from "../../styles/globalStyles";
 
 const schema = yup.object({
   newPassword: yup
@@ -39,11 +41,15 @@ type NonAuthStackParamList = {
 type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 
 export default function ForgotPassword({ navigation }: NavigationProp) {
+  const [loadingSearch, setLoadingSearch] = useState(false);
+  const [loadingConfirm, setLoadingConfirm] = useState(false);
+
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewpassword, setConfirmNewpassword] = useState("");
   const [hasEmail, setHasEmail] = useState(false);
   const [isEmailAvailable, setIsEmailAvailable] = useState(true);
+  const [emailError, setEmailerror] = useState();
   const [validPassword, setValidPassword] = useState(false);
   const {
     control,
@@ -60,23 +66,31 @@ export default function ForgotPassword({ navigation }: NavigationProp) {
   };
 
   const handleCheckEmailInside = async (email: string) => {
+    setLoadingSearch(true);
     try {
       let emailIsInApi = await checkEmail({ email });
       if (!emailIsInApi) {
         setIsEmailAvailable(emailIsInApi);
+        setEmailerror(emailIsInApi);
       } else {
         setIsEmailAvailable(emailIsInApi);
+        setEmailerror(emailIsInApi);
       }
     } catch (error: any) {
       alert("Erro durante o registro" + error);
+    } finally {
+      setLoadingSearch(false);
     }
   };
 
   const handleChangePassword = async () => {
+    setLoadingConfirm(true);
     try {
       await changePassword({ email, newPassword });
     } catch (error: any) {
       alert("Erro durante o registro" + error);
+    } finally {
+      setLoadingConfirm(false);
     }
   };
 
@@ -109,6 +123,10 @@ export default function ForgotPassword({ navigation }: NavigationProp) {
         source={require("../../assets/app-images/compass.png")}
       />
 
+      <View style={styles.back}>
+        <BackButton onPress={navigation.goBack} color="white" />
+      </View>
+
       <View style={styles.texts}>
         <Tittle style={styles.textTitle} weight="700">
           Forgot Password
@@ -121,18 +139,24 @@ export default function ForgotPassword({ navigation }: NavigationProp) {
       </View>
 
       <View style={styles.forms}>
-        <AuthInput
-          label="Email"
-          value={email}
-          autoCapitalize="none"
-          onChangeText={(text) => {
-            setEmail(text);
-            isEmailFieldNotEmpty = text;
-            handleEmailFiel();
-          }}
-          keyboardType="email-address"
-          editable={true}
-        />
+        <View style={!isEmailAvailable && styles.validInput}>
+          <AuthInput
+            label="Email"
+            value={email}
+            autoCapitalize="none"
+            onChangeText={(text) => {
+              setEmail(text);
+              isEmailFieldNotEmpty = text;
+              handleEmailFiel();
+            }}
+            keyboardType="email-address"
+            errorEmail={true}
+            editable={true}
+            error={emailError}
+            notError={isEmailAvailable}
+            loading={loadingSearch}
+          />
+        </View>
 
         <Controller
           control={control}
@@ -170,25 +194,50 @@ export default function ForgotPassword({ navigation }: NavigationProp) {
             />
           )}
         />
+
         {(errors.newPassword || errors.confirmNewPassword) && (
           <Text style={styles.errorMessage}>
             {errors.newPassword?.message || errors.confirmNewPassword?.message}
           </Text>
         )}
-        <View style={styles.buttons}>
+      </View>
+      <View style={styles.buttons}>
+        {loadingSearch ? (
           <Button
-            title="SEARCH"
-            onPress={() => {
-              handleCheckEmailInside(email);
-            }}
-            disable={hasEmail ? false : true}
+            content={
+              loadingSearch ? (
+                <ActivityIndicator size="large" color={colors.white} />
+              ) : null
+            }
           />
+        ) : (
+          <>
+            <Button
+              title="SEARCH"
+              onPress={() => {
+                handleCheckEmailInside(email);
+              }}
+              disable={hasEmail ? false : true}
+            />
+          </>
+        )}
+        {loadingConfirm ? (
           <Button
-            title="CONFIRM"
-            onPress={fullChangePassword}
-            disable={!!newPassword && !!confirmNewpassword ? false : true}
+            content={
+              loadingConfirm ? (
+                <ActivityIndicator size="large" color={colors.white} />
+              ) : null
+            }
           />
-        </View>
+        ) : (
+          <>
+            <Button
+              title="CONFIRM"
+              onPress={fullChangePassword}
+              disable={!!newPassword && !!confirmNewpassword ? false : true}
+            />
+          </>
+        )}
       </View>
     </View>
   );

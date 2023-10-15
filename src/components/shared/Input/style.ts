@@ -32,8 +32,17 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
   },
+  validInput: {
+    borderColor: colors.green_900,
+    borderWidth: 2,
+    borderRadius: 10,
+  },
   icon: {
-    top: 19,
-    right: 20,
+    top: 21,
+    right: 18,
+  },
+  loading: {
+    top: 15,
+    right: 10,
   },
 });

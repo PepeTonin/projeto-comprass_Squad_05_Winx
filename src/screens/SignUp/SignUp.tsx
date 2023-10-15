@@ -1,4 +1,4 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, ActivityIndicator } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
@@ -10,6 +10,7 @@ import { signUp } from "../../util/apiUsers";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import BackButton from "../../components/shared/BackButton/BackButton";
 
 const schema = yup.object({
   name: yup
@@ -44,6 +45,8 @@ type NonAuthStackParamList = {
 type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 
 export default function SignUp({ navigation }: NavigationProp) {
+  const [loading, setLoading] = useState(false);
+
   const [validPassword, setValidPassword] = useState(false);
 
   const {
@@ -65,11 +68,14 @@ export default function SignUp({ navigation }: NavigationProp) {
   };
 
   const handleSignUp = async (data: any) => {
+    setLoading(true);
     try {
       await signUp(data);
       navigation.navigate("Login");
     } catch (error: any) {
       alert("Erro durante o registro" + error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -98,6 +104,10 @@ export default function SignUp({ navigation }: NavigationProp) {
         style={styles.imageCompass}
         source={require("../../assets/app-images/compass.png")}
       />
+
+      <View style={styles.back}>
+        <BackButton onPress={navigation.goBack} color="white" />
+      </View>
 
       <View style={styles.texts}>
         <Tittle style={styles.textTitle} weight="700">
@@ -186,7 +196,19 @@ export default function SignUp({ navigation }: NavigationProp) {
         )}
 
         <View style={styles.buttons}>
-          <Button title="SIGN UP" onPress={fullSignUp} />
+          {loading ? (
+            <Button
+              content={
+                loading ? (
+                  <ActivityIndicator size="large" color="#ffffff" />
+                ) : null
+              }
+            />
+          ) : (
+            <>
+              <Button title="SIGN UP" onPress={fullSignUp} />
+            </>
+          )}
         </View>
       </View>
     </View>

@@ -1,8 +1,15 @@
-import { Pressable, Text, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { PropsWithChildren, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./style";
 import { colors } from "../../../styles/globalStyles";
+import { AntDesign } from "@expo/vector-icons";
 
 interface PropsInput {
   style?: any;
@@ -14,6 +21,9 @@ interface PropsInput {
   keyboardType?: "default" | "numeric" | "email-address" | "phone-pad";
   error?: boolean;
   editable: boolean;
+  errorEmail?: boolean;
+  notError?: boolean;
+  loading?: boolean;
 }
 
 export default function AuthInput(props: PropsWithChildren<PropsInput>) {
@@ -57,24 +67,6 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
         >
           {props.label}
         </Text>
-        {/* <View>
-          {props.onChangeText &&
-            (props.error ? (
-              <AntDesign
-                name="close"
-                size={20}
-                color={"red"}
-                style={styles.icon}
-              />
-            ) : (
-              <AntDesign
-                name="check"
-                size={20}
-                color={"green"}
-                style={styles.icon}
-              />
-            ))}
-        </View> */}
 
         <TextInput
           style={styles.input}
@@ -92,7 +84,6 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
           onFocus={handleFocus}
           onBlur={handleBlur}
         />
-
         {props.secureTextEntry && props.editable ? (
           <Pressable onPress={onEyePress}>
             {isPasswordVisible ? (
@@ -112,6 +103,34 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
             )}
           </Pressable>
         ) : null}
+        <View>
+          {props.loading ? (
+            <ActivityIndicator
+              size={"large"}
+              color={colors.red_500}
+              style={styles.loading}
+            />
+          ) : (
+            props.errorEmail &&
+            (props.error ? (
+              <AntDesign
+                name="close"
+                size={20}
+                color="red"
+                style={styles.icon}
+              />
+            ) : (
+              !props.notError && (
+                <AntDesign
+                  name="check"
+                  size={20}
+                  color="green"
+                  style={styles.icon}
+                />
+              )
+            ))
+          )}
+        </View>
       </View>
     </View>
   );

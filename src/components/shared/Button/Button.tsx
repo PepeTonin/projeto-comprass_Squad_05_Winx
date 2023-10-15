@@ -3,10 +3,11 @@ import { Pressable, Text, TouchableOpacityProps, View } from "react-native";
 import { styles } from "./style";
 
 interface ButtonProps extends TouchableOpacityProps {
-  title: string;
+  title?: string;
   style?: any;
   disable?: boolean;
   onPress?: () => void;
+  content?: React.ReactNode;
 }
 
 export default function Button(props: ButtonProps) {
@@ -21,7 +22,7 @@ export default function Button(props: ButtonProps) {
         disabled={props.disable}
         onPress={props.onPress}
       >
-        <Text style={styles.buttonText}>{props.title}</Text>
+        {props.content || <Text style={styles.buttonText}>{props.title}</Text>}
       </Pressable>
     </View>
   );

@@ -12,6 +12,11 @@ export const styles = StyleSheet.create({
     height: 375,
     top: 218,
   },
+  back: {
+    position: "absolute",
+    top: 48,
+    left: 10,
+  },
   texts: {
     top: 117,
     left: 18,
