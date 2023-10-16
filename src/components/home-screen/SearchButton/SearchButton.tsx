@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Pressable, View, TextInput, FlatList, Text } from "react-native";
+import {
+  Pressable,
+  View,
+  TextInput,
+  FlatList,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { styles } from "./style";
@@ -24,19 +31,23 @@ export default function SearchButton(props: SearchButtonProps) {
   const [text, setText] = useState<string>("");
   const [callGetProducts, setCallGetProducts] = useState<boolean>(false);
   const [data, setData] = useState<ItemData[]>([]);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   async function getProductsByTitle() {
     try {
       const response = await fetchProductsFilteredByTitle(text);
       setData(response);
+      setIsFetching(false);
     } catch (error) {
-      // TO DO: HANDLE THIS ERROR
-      console.log("error: ", error);
+      setIsFetching;
+    } finally {
+      setIsFetching(false);
     }
   }
 
   useEffect(() => {
     if (text.length >= 3) {
+      setIsFetching(true);
       setCallGetProducts(true);
     } else {
       setCallGetProducts(false);
@@ -69,7 +80,12 @@ export default function SearchButton(props: SearchButtonProps) {
           <View></View>
         </View>
       )}
-      {callGetProducts && data.length > 0 && (
+      {callGetProducts && data.length > 0 && isFetching && (
+        <View style={styles.listContainer}>
+          <ActivityIndicator size={"large"} color={colors.red_500} />
+        </View>
+      )}
+      {callGetProducts && data.length > 0 && !isFetching && (
         <View style={styles.listContainer}>
           <FlatList
             data={data}
@@ -87,6 +103,11 @@ export default function SearchButton(props: SearchButtonProps) {
               />
             )}
           />
+        </View>
+      )}
+      {callGetProducts && data.length === 0 && !isFetching && (
+        <View style={[styles.listContainer, styles.emptyListContainer]}>
+          <Text style={styles.emptyListText}>No products found</Text>
         </View>
       )}
     </Pressable>

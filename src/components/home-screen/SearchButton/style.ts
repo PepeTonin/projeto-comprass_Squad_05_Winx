@@ -47,4 +47,13 @@ export const styles = StyleSheet.create({
     right: 5,
     borderRadius: 12,
   },
+  emptyListContainer: {
+    padding: 10,
+  },
+  emptyListText: {
+    color: colors.black,
+    fontFamily: fontFamilies.regularOpenSans,
+    fontSize: fontSizes.xs,
+    textAlign: "center",
+  },
 });
