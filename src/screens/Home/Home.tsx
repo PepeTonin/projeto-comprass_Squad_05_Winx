@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { Text, View, FlatList } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { fetchCategoriesOneToFive } from "../../util/apiRequests";
+import {
+  fetchCategories,
+  fetchCategoriesOneToFive,
+} from "../../util/apiRequests";
 import HomeSection from "../../components/home-screen/HomeSection/HomeSection";
 import { styles } from "./style";
 import HomeHeader from "../../components/home-screen/HomeHeader/HomeHeader";
@@ -25,17 +28,18 @@ interface ItemData {
 
 export default function Home({ navigation }: HomeScreenNavigationProp) {
   const [initializing, setInitializing] = useState<boolean>();
+  const [initializedWithError, setInitializedWithError] = useState<boolean>();
 
   const [data, setData] = useState<ItemData[]>([]);
 
   async function getCategories() {
     try {
-      const response = await fetchCategoriesOneToFive();
+      const response = await fetchCategories();
       setData(response);
+      setInitializedWithError(false);
       setInitializing(false);
     } catch (error) {
-      // TO DO: HANDLE THIS ERROR
-      console.log("error: ", error);
+      setInitializedWithError(true);
     }
   }
 
@@ -70,26 +74,28 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
         <SearchButton onCardPress={onCardPress} />
       </View>
 
-      <FlatList
-        style={{ zIndex: -1 }}
-        ListHeaderComponent={HomeHeader}
-        ListFooterComponent={<View></View>}
-        ListFooterComponentStyle={{ marginVertical: 15 }}
-        showsVerticalScrollIndicator={false}
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) =>
-          initializing ? (
-            <Splash />
-          ) : (
-            <HomeSection
-              onCardPress={onCardPress}
-              categoryId={item.id}
-              categoryName={item.name}
-            />
-          )
-        }
-      />
+      {!initializing && !initializedWithError && (
+        <FlatList
+          style={{ zIndex: -1 }}
+          ListHeaderComponent={HomeHeader}
+          ListFooterComponent={<View></View>}
+          ListFooterComponentStyle={{ marginVertical: 15 }}
+          showsVerticalScrollIndicator={false}
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) =>
+            initializing ? (
+              <Splash />
+            ) : (
+              <HomeSection
+                onCardPress={onCardPress}
+                categoryId={item.id}
+                categoryName={item.name}
+              />
+            )
+          }
+        />
+      )}
     </View>
   );
 }

@@ -6,6 +6,16 @@ export async function fetchProductsByCategoryId(categoryId: string) {
   return response.data;
 }
 
+export async function fetchCategories() {
+  let url = `https://api.escuelajs.co/api/v1/categories`;
+  const response = await axios.get(url);
+  if (response.data.length < 5) {
+    return response.data;
+  } else {
+    return response.data.slice(0, 5);
+  }
+}
+
 export async function fetchCategoriesOneToFive() {
   const data = [];
   for (let i = 1; i <= 5; i++) {
@@ -28,7 +38,10 @@ export async function fetchProductById(id: number) {
   return response.data;
 }
 
-export async function fetchLimitedAmountOfProductsFilteredByCategory(categoryId: number, amount: number) {
+export async function fetchLimitedAmountOfProductsFilteredByCategory(
+  categoryId: number,
+  amount: number
+) {
   let url = `https://api.escuelajs.co/api/v1/categories/${categoryId}/products?offset=0&limit=${amount}`;
   const response = await axios.get(url);
   return response.data;
