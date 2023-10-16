@@ -4,8 +4,24 @@ import { fontFamilies, fontSizes } from "../../styles/globalStyles";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    top: 346,
+  },
+  backButton: {
+    top: 4,
+    left: 7,
+  },
+  header: {
+    alignSelf: "center",
+    flexDirection: "row",
+    bottom: 25,
+  },
+  body: {
+    top: 246,
     alignItems: "center",
+  },
+  textTitle: {
+    fontFamily: fontFamilies.extraBoldOpenSans,
+    fontSize: fontSizes.m,
+    textAlign: "center",
   },
   text: {
     textAlign: "center",
