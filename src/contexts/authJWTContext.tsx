@@ -4,6 +4,7 @@ interface AuthJWTContextType {
   token: string;
   tokenReceived: boolean;
   receiveToken: (data: string) => void;
+  deleteToken: () => void;
 }
 
 export const TokenContext = createContext<AuthJWTContextType>(
@@ -25,10 +26,16 @@ function TokenProvider({ children }: AuthProviderProps) {
     }
   }
 
+  function deleteToken() {
+    setToken("");
+    setTokenReceived(false);
+  }
+
   const contextValue: AuthJWTContextType = {
     token,
     tokenReceived,
     receiveToken,
+    deleteToken,
   };
 
   return (

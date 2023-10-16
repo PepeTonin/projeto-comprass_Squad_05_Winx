@@ -10,6 +10,7 @@ import { TokenContext } from "../../contexts/authJWTContext";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const schema = yup.object({
   email: yup.string().required("").email("Your email or password is incorrect"),
@@ -44,10 +45,17 @@ export default function Login({ navigation }: NavigationProp) {
     resolver: yupResolver(schema),
   });
 
+  const storeData = async (value: string) => {
+    try {
+      await AsyncStorage.setItem("token", value);
+    } catch (e) {}
+  };
+
   const handleSignIn = async (data: any) => {
     setLoading(true);
     try {
       const token = await signIn(data);
+      storeData(token);
       receiveToken(token);
       if (token) {
         setSignInSuccess(true);

@@ -2,6 +2,9 @@ import { Button, Text, View } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
+import { TokenContext } from "../../contexts/authJWTContext";
+import { useContext, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type LoggedCheckoutStackParamList = {
   LoggedCheckout: any;
