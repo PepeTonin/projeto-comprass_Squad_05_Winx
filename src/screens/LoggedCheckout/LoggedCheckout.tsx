@@ -25,7 +25,10 @@ let paymentMethod: typeofPayment;
 paymentMethod = typeofPayment.bankslip;
 export default function LoggedCheckout({
   navigation,
+  route,
 }: LoggedCheckoutScreenNavigationProp) {
+  const address = route.params;
+
   return (
     <View style={styles.container}>
       <Text>Logged checkout screen</Text>

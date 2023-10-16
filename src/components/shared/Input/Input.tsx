@@ -5,7 +5,7 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { PropsWithChildren, useState } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./style";
 import { colors } from "../../../styles/globalStyles";
@@ -44,6 +44,11 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
       setIsFocused(false);
     }
   };
+  useEffect(() => {
+    if (text.length != 0) {
+      setIsFocused(true);
+    }
+  }, [text]);
 
   return (
     <View style={styles.container}>
@@ -59,7 +64,7 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
           style={[
             styles.label,
             {
-              top: isFocused || text !== "" ? 6 : 19,
+              top: isFocused || props.value !== "" || text !== "" ? 6 : 19,
               fontSize: isFocused || text !== "" ? 12 : 15,
               color: colors.gray_500,
             },
