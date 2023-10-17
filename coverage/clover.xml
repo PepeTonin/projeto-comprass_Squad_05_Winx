@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1697570481796" clover="3.2.0">
-  <project timestamp="1697570481796" name="All files">
-    <metrics statements="664" coveredstatements="21" conditionals="323" coveredconditionals="21" methods="199" coveredmethods="6" elements="1186" coveredelements="48" complexity="0" loc="664" ncloc="664" packages="41" files="84" classes="84"/>
+<coverage generated="1697573020774" clover="3.2.0">
+  <project timestamp="1697573020774" name="All files">
+    <metrics statements="667" coveredstatements="17" conditionals="323" coveredconditionals="4" methods="201" coveredmethods="3" elements="1191" coveredelements="24" complexity="0" loc="667" ncloc="667" packages="41" files="84" classes="84"/>
     <package name="projeto-comprass_Squad_05_Winx">
       <metrics statements="9" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.tsx" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\App.tsx">
@@ -119,33 +119,33 @@
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.components.UnauthProfile">
-      <metrics statements="21" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <metrics statements="21" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="1"/>
       <file name="UnauthProfile.tsx" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\components\UnauthProfile\UnauthProfile.tsx">
-        <metrics statements="20" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
+        <metrics statements="20" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="1"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
         <line num="18" count="0" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
         <line num="25" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="28" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
         <line num="32" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
       </file>
       <file name="style.ts" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\components\UnauthProfile\style.ts">
-        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="0" type="stmt"/>
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.components.home-screen.HomeHeader">
@@ -375,14 +375,14 @@
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.components.shared.BackButton">
-      <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="BackButton.tsx" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\components\shared\BackButton\BackButton.tsx">
-        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
-        <line num="13" count="1" type="stmt"/>
+        <metrics statements="1" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="13" count="0" type="stmt"/>
       </file>
       <file name="style.ts" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\components\shared\BackButton\style.ts">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="1" type="stmt"/>
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.components.shared.Button">
@@ -397,41 +397,41 @@
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.components.shared.ErrorMessage">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="ErrorMessage.tsx" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\components\shared\ErrorMessage\ErrorMessage.tsx">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="8" count="1" type="stmt"/>
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
       </file>
       <file name="style.ts" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\components\shared\ErrorMessage\style.ts">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.components.shared.Input">
-      <metrics statements="18" coveredstatements="10" conditionals="46" coveredconditionals="16" methods="6" coveredmethods="2"/>
+      <metrics statements="18" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="6" coveredmethods="0"/>
       <file name="Input.tsx" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\components\shared\Input\Input.tsx">
-        <metrics statements="17" coveredstatements="9" conditionals="46" coveredconditionals="16" methods="6" coveredmethods="2"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
+        <metrics statements="17" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
         <line num="36" count="0" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
         <line num="40" count="0" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
         <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="45" count="0" type="stmt"/>
-        <line num="48" count="1" type="stmt"/>
-        <line num="49" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="50" count="0" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
         <line num="92" count="0" type="stmt"/>
         <line num="93" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="94" count="0" type="stmt"/>
       </file>
       <file name="style.ts" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\components\shared\Input\style.ts">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="1" type="stmt"/>
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.components.shared.Tittle">
@@ -736,18 +736,21 @@
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.screens.LoggedCheckout">
-      <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
       <file name="LoggedCheckout.tsx" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\screens\LoggedCheckout\LoggedCheckout.tsx">
-        <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
+        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
       </file>
       <file name="style.ts" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\screens\LoggedCheckout\style.ts">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.screens.Login">
@@ -938,9 +941,9 @@
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="globalStyles.ts" path="C:\Users\Jhimy\Documents\Hybrid Journey React Native\Challenges\Comprass\projeto-comprass_Squad_05_Winx\src\styles\globalStyles.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="5" type="stmt"/>
-        <line num="17" count="5" type="stmt"/>
-        <line num="24" count="5" type="stmt"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
       </file>
     </package>
     <package name="projeto-comprass_Squad_05_Winx.src.util">

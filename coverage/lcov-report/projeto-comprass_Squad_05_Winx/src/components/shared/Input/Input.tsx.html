@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.94% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/17</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">34.78% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>16/46</span>
+                <span class='fraction'>0/46</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52.94% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/17</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -243,30 +243,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -392,53 +392,53 @@ interface PropsInput {
   zipCode?: boolean;
 }
 &nbsp;
-export default function AuthInput(props: PropsWithChildren&lt;PropsInput&gt;) {
-  const [text, setText] = useState("");
-  const [isFocused, setIsFocused] = useState(false);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+export default function <span class="fstat-no" title="function not covered" >AuthInput(</span>props: PropsWithChildren&lt;PropsInput&gt;) {
+  const [text, setText] = <span class="cstat-no" title="statement not covered" >useState("");</span>
+  const [isFocused, setIsFocused] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+  const [isPasswordVisible, setIsPasswordVisible] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
 &nbsp;
-  const onEyePress = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+  const onEyePress = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    setIsPasswordVisible(!isPasswordVisible);</span>
   };
 &nbsp;
-  const handleFocus = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+  const handleFocus = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    setIsFocused(true);</span>
   };
 &nbsp;
-  const handleBlur = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+  const handleBlur = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    if (text === "") {</span>
 <span class="cstat-no" title="statement not covered" >      setIsFocused(false);</span>
     }
   };
-  useEffect(() =&gt; {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (text.length != 0) {
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    if (text.length != 0) {</span>
 <span class="cstat-no" title="statement not covered" >      setIsFocused(true);</span>
     }
   }, [text]);
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;View style={styles.container} testID="Input"&gt;
       &lt;View
         style={[
           styles.boxInput,
           props.style,
           !props.editable &amp;&amp; styles.inputDisable,
-          props.error ? <span class="branch-0 cbranch-no" title="branch not covered" >styles.errorInput </span>: null,
+          props.error ? styles.errorInput : null,
         ]}
       &gt;
         &lt;Text
           style={[
             styles.label,
             props.zipCode
-              ? <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
+              ? {
                   top: isFocused || props.value !== "" || text !== "" ? 6 : 19,
                   fontSize:
                     isFocused || props.value !== "" || text !== "" ? 12 : 15,
                   color: colors.gray_500,
                 }
               : {
-                  top: isFocused || text !== "" ? <span class="branch-0 cbranch-no" title="branch not covered" >6 </span>: 19,
-                  fontSize: isFocused || text !== "" ? <span class="branch-0 cbranch-no" title="branch not covered" >12 </span>: 15,
+                  top: isFocused || text !== "" ? 6 : 19,
+                  fontSize: isFocused || text !== "" ? 12 : 15,
                   color: colors.gray_500,
                 },
           ]}
@@ -450,7 +450,7 @@ export default function AuthInput(props: PropsWithChildren&lt;PropsInput&gt;) {
           style={styles.input}
           value={props.value}
           autoCapitalize={props.autoCapitalize}
-          secureTextEntry={props.secureTextEntry &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!isPasswordVisible}</span>
+          secureTextEntry={props.secureTextEntry &amp;&amp; !isPasswordVisible}
           keyboardType={props.keyboardType}
           editable={props.editable}
           onChangeText={<span class="fstat-no" title="function not covered" >(n</span>ewText) =&gt; {
@@ -462,8 +462,8 @@ export default function AuthInput(props: PropsWithChildren&lt;PropsInput&gt;) {
           onFocus={handleFocus}
           onBlur={handleBlur}
         /&gt;
-        {props.secureTextEntry &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >props.editable </span>? (
-<span class="branch-0 cbranch-no" title="branch not covered" >          &lt;Pressable onPress={onEyePress}&gt;</span>
+        {props.secureTextEntry &amp;&amp; props.editable ? (
+          &lt;Pressable onPress={onEyePress}&gt;
             {isPasswordVisible ? (
               &lt;Ionicons
                 name="eye"
@@ -483,14 +483,14 @@ export default function AuthInput(props: PropsWithChildren&lt;PropsInput&gt;) {
         ) : null}
         &lt;View&gt;
           {props.loading ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >            &lt;ActivityIndicator</span>
+            &lt;ActivityIndicator
               size={"large"}
               color={colors.red_500}
               style={styles.loading}
             /&gt;
           ) : (
             props.errorEmail &amp;&amp;
-            (<span class="branch-1 cbranch-no" title="branch not covered" >props.error ? (</span>
+            (props.error ? (
               &lt;AntDesign
                 name="close"
                 size={20}
@@ -520,7 +520,7 @@ export default function AuthInput(props: PropsWithChildren&lt;PropsInput&gt;) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-10-17T19:21:21.698Z
+                at 2023-10-17T20:03:40.664Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>
