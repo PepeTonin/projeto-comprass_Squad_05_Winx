@@ -120,6 +120,7 @@ export default function AddShippingAddress({
           onChangeText={(text) => setAddress(text)}
           editable={isEditable}
           style={styles.input}
+          zipCode={true}
         />
         <AuthInput
           label="City"
@@ -128,6 +129,7 @@ export default function AddShippingAddress({
           onChangeText={(text) => setCity(text)}
           editable={isEditable}
           style={styles.input}
+          zipCode={true}
         />
         <AuthInput
           label="State/Province/Region"
@@ -136,6 +138,7 @@ export default function AddShippingAddress({
           onChangeText={(text) => setState(text)}
           editable={isEditable}
           style={styles.input}
+          zipCode={true}
         />
         <AuthInput
           label="Full Name"
@@ -144,6 +147,7 @@ export default function AddShippingAddress({
           onChangeText={(text) => setFullName(text)}
           editable={isEditable}
           style={styles.input}
+          zipCode={true}
         />
       </View>
 
