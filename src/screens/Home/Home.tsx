@@ -11,6 +11,7 @@ import HomeProfileHeader from "../../components/home-screen/HomeProfileHeader/Ho
 import Splash from "../Splash/Splash";
 import ErrorMessage from "../../components/shared/ErrorMessage/ErrorMessage";
 import { TokenContext } from "../../contexts/authJWTContext";
+import { getSingleUser } from "../../util/apiUsers";
 
 
 type StackParamList = {
@@ -31,6 +32,9 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
   const [initializedWithError, setInitializedWithError] = useState<boolean>();
   const [data, setData] = useState<ItemData[]>([]);
   const [isLoggednIn, setIsLoggedIn] = useState<boolean>(false);
+  const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState("");
+  const { id } = useContext(TokenContext);
 
   const authContext = useContext(TokenContext);
 
@@ -45,10 +49,21 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
     }
   }
 
+  const handleUser = async (id: any) => {
+    try {
+      const data = await getSingleUser(id);
+      setName(data?.name);
+      setAvatar(data?.avatar);
+    } catch (e) {
+      alert("Erro handle" + e);
+    }
+  };
+
   useEffect(() => {
     setInitializing(true);
     getCategories();
-  }, []);
+    handleUser({ id });
+  }, [id]);
 
   useEffect(() => {
     if (authContext.tokenReceived) {
@@ -75,10 +90,7 @@ export default function Home({ navigation }: HomeScreenNavigationProp) {
         <>
           <View style={styles.stickyHeader}>
             {isLoggednIn ? (
-              <HomeProfileHeader
-                userImageUrl={"https://i.imgur.com/nZnWUc0.jpeg"}
-                userName={"Jhon"}
-              />
+              <HomeProfileHeader userImageUrl={avatar} userName={name} />
             ) : null}
 
             <SearchButton onCardPress={onCardPress} />

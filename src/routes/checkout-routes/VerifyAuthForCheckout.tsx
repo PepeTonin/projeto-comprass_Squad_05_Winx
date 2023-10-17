@@ -10,13 +10,9 @@ export default function VerifyAuthForCheckout() {
   const { receiveToken } = useContext(TokenContext);
 
   const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem("token");
-      if (value !== null) {
-        receiveToken(value);
-      }
-    } catch (e) {
-      // error reading value
+    const value = await AsyncStorage.getItem("token");
+    if (value !== null) {
+      receiveToken(value);
     }
   };
 

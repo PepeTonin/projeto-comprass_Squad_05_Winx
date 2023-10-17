@@ -36,7 +36,7 @@ type NavigationProp = NativeStackScreenProps<NonAuthStackParamList>;
 export default function Login({ navigation }: NavigationProp) {
   const [loading, setLoading] = useState(false);
   const [signInSuccess, setSignInSuccess] = useState(false);
-  const { receiveToken } = useContext(TokenContext);
+  const { receiveToken, getId } = useContext(TokenContext);
   const {
     control,
     handleSubmit,
@@ -54,10 +54,11 @@ export default function Login({ navigation }: NavigationProp) {
   const handleSignIn = async (data: any) => {
     setLoading(true);
     try {
-      const token = await signIn(data);
-      storeData(token);
-      receiveToken(token);
-      if (token) {
+      const result = await signIn(data);
+      getId(result?.id);
+      storeData(result?.token);
+      receiveToken(result?.token);
+      if (result?.token) {
         setSignInSuccess(true);
       }
     } catch (error: any) {

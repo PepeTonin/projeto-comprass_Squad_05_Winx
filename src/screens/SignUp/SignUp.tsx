@@ -128,7 +128,6 @@ export default function SignUp({ navigation }: NavigationProp) {
             <AuthInput
               label="Name"
               value={value}
-              autoCapitalize="none"
               onChangeText={onChange}
               keyboardType="email-address"
               editable={true}

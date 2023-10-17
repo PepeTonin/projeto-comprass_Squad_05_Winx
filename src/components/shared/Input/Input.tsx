@@ -24,6 +24,7 @@ interface PropsInput {
   errorEmail?: boolean;
   notError?: boolean;
   loading?: boolean;
+  zipCode?: boolean;
 }
 
 export default function AuthInput(props: PropsWithChildren<PropsInput>) {
@@ -63,11 +64,18 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
         <Text
           style={[
             styles.label,
-            {
-              top: isFocused || props.value !== "" || text !== "" ? 6 : 19,
-              fontSize: isFocused || text !== "" ? 12 : 15,
-              color: colors.gray_500,
-            },
+            props.zipCode
+              ? {
+                  top: isFocused || props.value !== "" || text !== "" ? 6 : 19,
+                  fontSize:
+                    isFocused || props.value !== "" || text !== "" ? 12 : 15,
+                  color: colors.gray_500,
+                }
+              : {
+                  top: isFocused || text !== "" ? 6 : 19,
+                  fontSize: isFocused || text !== "" ? 12 : 15,
+                  color: colors.gray_500,
+                },
           ]}
         >
           {props.label}
