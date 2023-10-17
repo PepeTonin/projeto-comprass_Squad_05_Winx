@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
@@ -9,6 +9,9 @@ import ProductInfos from "../../components/product-details/ProductInfos/ProductI
 import Accordion from "../../components/product-details/Accordion/Accordion";
 import AmountControler from "../../components/product-details/AmountControler/AmountControler";
 import RelatedItems from "../../components/product-details/RelatedItems/RelatedItems";
+import { colors } from "../../styles/globalStyles";
+import ErrorMessage from "../../components/shared/ErrorMessage/ErrorMessage";
+import Button from "../../components/shared/Button/Button";
 
 type StackParamList = {
   HomeRoutes: any;
@@ -41,23 +44,24 @@ export default function ProductDetails({
 
   const [data, setData] = useState<ItemData>();
   const [isFetching, setIsFetching] = useState<boolean>(true);
+  const [initializedWithError, setInitializedWithError] = useState<boolean>();
 
   function onBackPress() {
     navigation.goBack();
   }
 
   function onRelatedItemCardPress(id: number) {
-    console.log('id', id)
+    console.log("id", id);
   }
 
   async function getProductDetails() {
     try {
       const response = await fetchProductById(productId);
       setData(response);
+      setInitializedWithError(false);
       setIsFetching(false);
     } catch (error) {
-      // TO DO: HANDLE THIS ERROR
-      console.log("error: ", error);
+      setInitializedWithError(true);
     }
   }
 
@@ -67,7 +71,11 @@ export default function ProductDetails({
   }, []);
 
   if (isFetching) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size={"large"} color={colors.red_500} />
+      </View>
+    );
   }
 
   const itemDetailsAccordion = {
@@ -88,11 +96,23 @@ Ipsa, consectetur cupiditate voluptas non quidem illum nihil similique doloremqu
     text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, quasi! Officia quis modi aperiam odit natus tempora, exercitationem dolorum in, incidunt repellat praesentium et adipisci recusandae eaque optio. Dolore, expedita!",
   };
 
-  if (!isFetching) {
+  if (!isFetching && initializedWithError) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ErrorMessage />
+        <Button
+          title="Back to the home screen"
+          onPress={() => navigation.goBack()}
+        />
+      </View>
+    );
+  }
+
+  if (!isFetching && !initializedWithError) {
     return (
       <View style={styles.container}>
         <ProductDetailsHeader onBackPress={onBackPress} />
-        <ScrollView>
+        <ScrollView style={styles.scrollContainer}>
           <ProductInfos
             categoryName={data?.category.name}
             description={data?.description}
@@ -114,7 +134,10 @@ Ipsa, consectetur cupiditate voluptas non quidem illum nihil similique doloremqu
             text={supportAccordion.text}
           />
 
-          <RelatedItems categoryId={data?.category.id} onRelatedItemCardPress={onRelatedItemCardPress} />
+          <RelatedItems
+            categoryId={data?.category.id}
+            onRelatedItemCardPress={onRelatedItemCardPress}
+          />
         </ScrollView>
         <AmountControler />
       </View>
