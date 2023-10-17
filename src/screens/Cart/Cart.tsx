@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from "react";
-import { Text, View, Button } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
 import { CartContext } from "../../contexts/cartContext";
-import Card from "../../components/Card/Card";
+import ItemCard from "../../components/cart-screen/ItemCard/ItemCard";
+import BuyButtonBox from "../../components/cart-screen/BuyButtonBox/BuyButtonBox";
 
 type StackParamList = {
   BottomTabRoutes: any;
@@ -12,27 +13,57 @@ type StackParamList = {
   CartRoutes: any;
 };
 
+interface cartItemType {
+  id: number;
+  productName: string;
+  productUnitPrice: number;
+  images: string[];
+  productQuantity: number;
+  productTotalPrice: number;
+}
+
 type CartScreenNavigationProp = NativeStackScreenProps<StackParamList>;
 
 export default function Cart({ navigation }: CartScreenNavigationProp) {
+  const [cart, setCart] = useState<cartItemType[]>([]);
+  const [isCartEmpty, setIsCartEmpty] = useState<boolean>(true);
+
   const cartContext = useContext(CartContext);
-  console.log("cart", cartContext.items);
+
+  useEffect(() => {
+    setCart(cartContext.items);
+    if (cartContext.items.length === 0) {
+      setIsCartEmpty(true);
+    } else {
+      setIsCartEmpty(false);
+    }
+  }, [cartContext.items]);
+
+  function onBuyPress() {
+    navigation.navigate("CartRoutes");
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Cart Screen</Text>
-      <Card
-        img="https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png"
-        amount={1}
-        name="Nome"
-        price="15.11"
+      <View style={styles.headerContainer}>
+        <Text style={styles.title}>Cart</Text>
+      </View>
+      <FlatList
+        data={cart}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <ItemCard
+            id={item.id}
+            img={item.images[0]}
+            amount={item.productQuantity}
+            name={item.productName}
+            unitPrice={item.productUnitPrice}
+            totalPrice={item.productTotalPrice}
+          />
+        )}
       />
 
-      <Button
-        title="buy"
-        onPress={() => {
-          navigation.navigate("CartRoutes");
-        }}
-      />
+      <BuyButtonBox onBuyPress={onBuyPress} isCartEmpty={isCartEmpty} />
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import { PropsWithChildren, createContext, useState } from "react";
 
 interface cartContextType {
   items: storedItemType[];
@@ -6,8 +6,7 @@ interface cartContextType {
   addOneToExistingItem: (id: number) => void;
   removeOneFromExistingItem: (id: number) => void;
   deleteItem: (id: number) => void;
-  totalPrice: number;
-  listOfItensIdInCart: number[];
+  getTotalPrice: () => number;
   getItemAmount: (id: number) => number;
 }
 
@@ -15,6 +14,7 @@ interface storedItemType {
   id: number;
   productName: string;
   productUnitPrice: number;
+  images: string[];
   productQuantity: number;
   productTotalPrice: number;
 }
@@ -23,22 +23,20 @@ interface receivedItemType {
   id: number;
   productName: string;
   productUnitPrice: number;
+  images: string[];
 }
 
 export const CartContext = createContext({} as cartContextType);
 
 export default function CartContextProvider({ children }: PropsWithChildren) {
   const [cart, setCart] = useState<storedItemType[]>([]);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [itensIdInCart, setItensIdInCart] = useState<number[]>([]);
-
-  const [itemAmount, setItemAmount] = useState<number>();
 
   function addNewItem(receivedItem: receivedItemType) {
     const item: storedItemType = {
       id: receivedItem.id,
       productName: receivedItem.productName,
       productUnitPrice: receivedItem.productUnitPrice,
+      images: receivedItem.images,
       productQuantity: 1,
       productTotalPrice: receivedItem.productUnitPrice,
     };
@@ -73,17 +71,12 @@ export default function CartContextProvider({ children }: PropsWithChildren) {
     setCart(cart.filter((item) => item.id !== id));
   }
 
-  function calculateTotalPrice() {
-    let totalPriceAux = 0;
-    cart.map((item) => {
-      setTotalPrice(totalPriceAux + item.productTotalPrice);
+  function getTotalPrice() {
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.productTotalPrice;
     });
-  }
-
-  function populateItensIdInCart() {
-    cart.map((item) => {
-      setItensIdInCart([...itensIdInCart, item.id]);
-    });
+    return total;
   }
 
   function getItemAmount(id: number) {
@@ -96,19 +89,13 @@ export default function CartContextProvider({ children }: PropsWithChildren) {
     return amount;
   }
 
-  useEffect(() => {
-    calculateTotalPrice();
-    populateItensIdInCart();
-  }, [cart]);
-
   const value = {
     items: cart,
     addNewItem: addNewItem,
     addOneToExistingItem: addOneToExistingItem,
     removeOneFromExistingItem: removeOneFromExistingItem,
     deleteItem: deleteItem,
-    totalPrice: totalPrice,
-    listOfItensIdInCart: itensIdInCart,
+    getTotalPrice: getTotalPrice,
     getItemAmount: getItemAmount,
   };
 

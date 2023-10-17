@@ -11,6 +11,7 @@ interface AmountControlerProps {
   productId: number;
   productName: string | undefined;
   productPrice: number | undefined;
+  images: string[] | undefined;
 }
 
 export default function AmountControler(props: AmountControlerProps) {
@@ -37,12 +38,14 @@ export default function AmountControler(props: AmountControlerProps) {
     if (
       amount === 0 &&
       props.productName !== undefined &&
-      props.productPrice !== undefined
+      props.productPrice !== undefined &&
+      props.images !== undefined
     ) {
       cartContext.addNewItem({
         id: props.productId,
         productName: props.productName,
         productUnitPrice: props.productPrice,
+        images: props.images,
       });
     } else {
       cartContext.addOneToExistingItem(props.productId);

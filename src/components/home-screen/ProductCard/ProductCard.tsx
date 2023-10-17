@@ -36,6 +36,7 @@ function ProductCard(props: ProductCardProps) {
         id: props.productId,
         productName: props.productName,
         productUnitPrice: props.productPrice,
+        images: props.imageUrl,
       });
     } else {
       cartContext.addOneToExistingItem(props.productId);

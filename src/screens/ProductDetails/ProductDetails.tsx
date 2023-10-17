@@ -136,7 +136,7 @@ Ipsa, consectetur cupiditate voluptas non quidem illum nihil similique doloremqu
             onRelatedItemCardPress={()=>{}}
           />
         </ScrollView>
-        <AmountControler productId={productId} productName={data?.title} productPrice={data?.price}  />
+        <AmountControler productId={productId} productName={data?.title} productPrice={data?.price} images={data?.images}  />
       </View>
     );
   }
