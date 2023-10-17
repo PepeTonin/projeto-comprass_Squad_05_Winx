@@ -15,7 +15,7 @@ interface PropsInput {
   style?: any;
   label: string;
   value: string;
-  autoCapitalize: "none" | "sentences" | "words" | "characters";
+  autoCapitalize?: "none" | "sentences" | "words" | "characters";
   secureTextEntry?: boolean;
   onChangeText?: (text: string) => void;
   keyboardType?: "default" | "numeric" | "email-address" | "phone-pad";
@@ -52,7 +52,7 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
   }, [text]);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="Input">
       <View
         style={[
           styles.boxInput,

@@ -33,7 +33,7 @@ export default function UnAuthProfile(props: any) {
   };
 
   return (
-    <View>
+    <View testID="UnauthProfile">
       <Tittle style={styles.textTitle}>My profile</Tittle>
 
       <View style={styles.header}>

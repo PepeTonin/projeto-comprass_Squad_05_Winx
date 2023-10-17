@@ -72,11 +72,19 @@ export default function ItemCard({
         </View>
         <View style={styles.innerContainerDown}>
           <View style={styles.amounContainer}>
-            <Pressable onPress={onPressMinus} style={styles.amountIcon}>
+            <Pressable
+              accessibilityHint="Will Decrease"
+              onPress={onPressMinus}
+              style={styles.amountIcon}
+            >
               <Entypo name="minus" size={24} color={colors.white} />
             </Pressable>
             <Text style={styles.amountText}>{amountCard}</Text>
-            <Pressable onPress={onPressPlus} style={styles.amountIcon}>
+            <Pressable
+              accessibilityHint="Will Increase"
+              onPress={onPressPlus}
+              style={styles.amountIcon}
+            >
               <Entypo name="plus" size={24} color={colors.white} />
             </Pressable>
           </View>

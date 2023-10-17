@@ -8,7 +8,7 @@ interface Props {
 }
 export default function EndCardPayment({ style }: Props) {
   return (
-    <View style={[styles.container, style]}>
+    <View testID={"EndCardPayment"} style={[styles.container, style]}>
       <Image source={require("../../assets/app-images/bags.png")} />
       <Tittle style={styles.title}>Success!</Tittle>
       <Text style={styles.message}>

@@ -11,7 +11,7 @@ interface Props {
 
 export default function EndBankSlipPayment({ style }: Props) {
   return (
-    <View style={[styles.container, style]}>
+    <View testID="EndBankSlipPayment" style={[styles.container, style]}>
       <Image source={require("../../assets/app-images/bags.png")} />
       <Tittle style={styles.title}>Success!</Tittle>
       <Text style={styles.message}>

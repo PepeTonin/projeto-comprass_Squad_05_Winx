@@ -12,7 +12,7 @@ interface ButtonProps extends TouchableOpacityProps {
 
 export default function Button(props: ButtonProps) {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="Button">
       <Pressable
         style={[
           styles.button,

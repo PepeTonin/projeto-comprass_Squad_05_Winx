@@ -73,7 +73,6 @@ export default function SignUp({ navigation }: NavigationProp) {
       await signUp(data);
       navigation.navigate("Login");
     } catch (error: any) {
-      alert("Erro durante o registro" + error);
     } finally {
       setLoading(false);
     }
@@ -129,7 +128,7 @@ export default function SignUp({ navigation }: NavigationProp) {
               label="Name"
               value={value}
               onChangeText={onChange}
-              keyboardType="email-address"
+              keyboardType="default"
               editable={true}
               error={errors.name ? true : false}
             />
