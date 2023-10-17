@@ -46,9 +46,7 @@ export default function Login({ navigation }: NavigationProp) {
   });
 
   const storeData = async (value: string) => {
-    try {
-      await AsyncStorage.setItem("token", value);
-    } catch (e) {}
+    await AsyncStorage.setItem("token", value);
   };
 
   const handleSignIn = async (data: any) => {
@@ -62,7 +60,6 @@ export default function Login({ navigation }: NavigationProp) {
         setSignInSuccess(true);
       }
     } catch (error: any) {
-      alert("Erro durante o registro" + error);
     } finally {
       setLoading(false);
     }

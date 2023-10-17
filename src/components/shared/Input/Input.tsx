@@ -15,7 +15,7 @@ interface PropsInput {
   style?: any;
   label: string;
   value: string;
-  autoCapitalize: "none" | "sentences" | "words" | "characters";
+  autoCapitalize?: "none" | "sentences" | "words" | "characters";
   secureTextEntry?: boolean;
   onChangeText?: (text: string) => void;
   keyboardType?: "default" | "numeric" | "email-address" | "phone-pad";

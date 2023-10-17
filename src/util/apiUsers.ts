@@ -20,9 +20,7 @@ export async function signUp(props: PropsWithChildren<PropsUser>) {
     };
 
     await axios.post(url, data);
-  } catch (error: any) {
-    alert("Erro ao fazer a solicitação" + error);
-  }
+  } catch (error: any) {}
 }
 
 export async function signIn(props: PropsWithChildren<PropsUser>) {
@@ -53,20 +51,15 @@ export async function signIn(props: PropsWithChildren<PropsUser>) {
             };
             return receivedData;
           } else {
-            alert("Não foi possível capturar o token");
           }
         } catch (error: any) {
           alert(error);
         }
       } else {
-        alert("Falha ao fazer login. Verifique seu email e senha");
       }
     } else {
-      alert("Falha ao obter a lista de usuários");
     }
-  } catch (error: any) {
-    alert("Erro ao fazer a solicitação" + error);
-  }
+  } catch (error: any) {}
 }
 
 export async function checkEmail(props: PropsWithChildren<PropsUser>) {
@@ -81,13 +74,10 @@ export async function checkEmail(props: PropsWithChildren<PropsUser>) {
 
     if (response.status === 201) {
       const isEmailAvailable = response.data.isAvailable;
-      alert("Email encontrado" + isEmailAvailable);
       return isEmailAvailable;
     } else {
-      alert("Email não encontrado");
     }
   } catch (error: any) {
-    alert("Erro ao fazer a solicitação" + error);
     return true;
   }
 }
@@ -113,20 +103,10 @@ export async function changePassword(props: PropsWithChildren<PropsUser>) {
 
         try {
           const response = await axios.put(putUrl, data);
-
-          if (response.status === 200) {
-            alert("Senha alterada");
-          } else {
-            alert("Senha não alterada");
-          }
-        } catch (error: any) {
-          alert("Erro ao fazer a solicitação" + error);
-        }
+        } catch (error: any) {}
       }
     }
-  } catch (error: any) {
-    alert("Erro ao fazer a solicitação" + error);
-  }
+  } catch (error: any) {}
 }
 
 export async function getSingleUser(props: PropsWithChildren<PropsUser>) {
@@ -143,9 +123,6 @@ export async function getSingleUser(props: PropsWithChildren<PropsUser>) {
 
       return data;
     } else {
-      alert("erro profile");
     }
-  } catch (e) {
-    alert("erro ao capturar" + e);
-  }
+  } catch (e) {}
 }

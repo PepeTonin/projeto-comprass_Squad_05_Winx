@@ -77,7 +77,6 @@ export default function ForgotPassword({ navigation }: NavigationProp) {
         setEmailerror(emailIsInApi);
       }
     } catch (error: any) {
-      alert("Erro durante o registro" + error);
     } finally {
       setLoadingSearch(false);
     }
@@ -88,7 +87,6 @@ export default function ForgotPassword({ navigation }: NavigationProp) {
     try {
       await changePassword({ email, newPassword });
     } catch (error: any) {
-      alert("Erro durante o registro" + error);
     } finally {
       setLoadingConfirm(false);
     }

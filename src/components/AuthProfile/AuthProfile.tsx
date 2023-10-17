@@ -30,12 +30,8 @@ export default function AuthProfile() {
   const { id } = useContext(TokenContext);
 
   const removeToken = async () => {
-    try {
-      await AsyncStorage.removeItem("token");
-      console.log("Token removido com sucesso.");
-    } catch (e) {
-      console.log("Erro ao remover o token: ", e);
-    }
+    await AsyncStorage.removeItem("token");
+    console.log("Token removido com sucesso.");
   };
 
   const handleButton1Press = () => {
