@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, memo, useEffect } from "react";
 import { Text, View, Pressable, Image } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
 import { styles } from "./style";
 import { colors } from "../../../styles/globalStyles";
+import { useCartStore } from "../../../store/cart";
 
 interface ProductCardProps {
   imageUrl: string[];
@@ -14,8 +15,10 @@ interface ProductCardProps {
   productPrice: number;
 }
 
-export default function ProductCard(props: ProductCardProps) {
+function ProductCard(props: ProductCardProps) {
   const [amount, setAmount] = useState<number>(0);
+
+  const { updateTotalAmountOfAnItem } = useCartStore();
 
   function onMinusPress() {
     if (amount === 0) {
@@ -31,6 +34,10 @@ export default function ProductCard(props: ProductCardProps) {
   function numberToTwoDecimalPlacesString(number: number) {
     return number.toFixed(2).toString().replace(".", ",");
   }
+
+  useEffect(() => {
+    updateTotalAmountOfAnItem(props.productId, amount);
+  }, [amount]);
 
   return (
     <View style={styles.outerContainer}>
@@ -63,3 +70,5 @@ export default function ProductCard(props: ProductCardProps) {
     </View>
   );
 }
+
+export default memo(ProductCard);

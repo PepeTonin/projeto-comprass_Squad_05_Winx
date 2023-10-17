@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 import InitialRoutes from "./src/routes/InitialRoutes";
 import TokenProvider from "./src/contexts/authJWTContext";
+import CartContextProvider from "./src/contexts/cartContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -33,7 +34,9 @@ export default function App() {
     <SafeAreaView onLayout={onLayoutRootView} style={styles.rootAppContainer}>
       <NavigationContainer>
         <TokenProvider>
-          <InitialRoutes />
+          <CartContextProvider>
+            <InitialRoutes />
+          </CartContextProvider>
         </TokenProvider>
       </NavigationContainer>
     </SafeAreaView>

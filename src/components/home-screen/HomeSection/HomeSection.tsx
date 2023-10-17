@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, useMemo } from "react";
 import { Text, View, FlatList } from "react-native";
 
 import { styles } from "./style";
@@ -19,7 +19,7 @@ interface ItemData {
   images: string[];
 }
 
-export default function HomeSection(props: HomeSectionProps) {
+function HomeSection(props: HomeSectionProps) {
   const [data, setData] = useState<ItemData[]>([]);
 
   async function getProductsFilteredByCategory(categoryId: number) {
@@ -44,6 +44,7 @@ export default function HomeSection(props: HomeSectionProps) {
       </View>
 
       <FlatList
+        initialNumToRender={5}
         horizontal
         showsHorizontalScrollIndicator={false}
         data={data}
@@ -62,3 +63,5 @@ export default function HomeSection(props: HomeSectionProps) {
     </View>
   );
 }
+
+export default memo(HomeSection);
