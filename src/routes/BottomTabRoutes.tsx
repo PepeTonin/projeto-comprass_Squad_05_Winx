@@ -1,10 +1,10 @@
+import { useEffect, useState, useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   MaterialCommunityIcons,
   Ionicons,
   FontAwesome5,
 } from "@expo/vector-icons";
-import { useContext } from "react";
 
 import Home from "../screens/Home/Home";
 import Cart from "../screens/Cart/Cart";
@@ -17,7 +17,14 @@ const Tab = createBottomTabNavigator();
 const iconsSize = 32;
 
 export default function BottomTabRoutes() {
+  const [isCartEmpty, setIsCartEmpty] = useState<boolean>(true);
+
   const cartContext = useContext(CartContext);
+
+  useEffect(() => {
+    if (cartContext.items.length === 0) setIsCartEmpty(true);
+    else setIsCartEmpty(false);
+  }, [cartContext.items]);
 
   return (
     <Tab.Navigator
@@ -56,6 +63,8 @@ export default function BottomTabRoutes() {
         name="CartTab"
         component={Cart}
         options={{
+          tabBarBadge: isCartEmpty ? undefined : "",
+          tabBarBadgeStyle: { backgroundColor: colors.red_500 },
           tabBarLabel: "Cart",
           tabBarActiveTintColor: colors.red_500,
           tabBarInactiveTintColor: colors.gray_500,

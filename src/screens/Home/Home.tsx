@@ -12,6 +12,7 @@ import Splash from "../Splash/Splash";
 import ErrorMessage from "../../components/shared/ErrorMessage/ErrorMessage";
 import { TokenContext } from "../../contexts/authJWTContext";
 
+
 type StackParamList = {
   BottomTabRoutes: any;
   HomeRoutes: any;
