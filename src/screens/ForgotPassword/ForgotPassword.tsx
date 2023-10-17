@@ -98,7 +98,8 @@ export default function ForgotPassword({ navigation }: NavigationProp) {
         {errors.confirmNewPassword?.message}
       </Text>;
     } else {
-      return setValidPassword(true);
+      setValidPassword(true);
+      navigation.navigate("Login");
     }
   };
 

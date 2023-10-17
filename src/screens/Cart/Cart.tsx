@@ -6,6 +6,7 @@ import { styles } from "./style";
 import { CartContext } from "../../contexts/cartContext";
 import ItemCard from "../../components/cart-screen/ItemCard/ItemCard";
 import BuyButtonBox from "../../components/cart-screen/BuyButtonBox/BuyButtonBox";
+import EmptyCartAlert from "../../components/cart-screen/EmptyCartAlert/EmptyCartAlert";
 
 type StackParamList = {
   BottomTabRoutes: any;
@@ -48,20 +49,25 @@ export default function Cart({ navigation }: CartScreenNavigationProp) {
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Cart</Text>
       </View>
-      <FlatList
-        data={cart}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <ItemCard
-            id={item.id}
-            img={item.images[0]}
-            amount={item.productQuantity}
-            name={item.productName}
-            unitPrice={item.productUnitPrice}
-            totalPrice={item.productTotalPrice}
-          />
-        )}
-      />
+      {isCartEmpty && (
+        <EmptyCartAlert />
+      )}
+      {!isCartEmpty && (
+        <FlatList
+          data={cart}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <ItemCard
+              id={item.id}
+              img={item.images[0]}
+              amount={item.productQuantity}
+              name={item.productName}
+              unitPrice={item.productUnitPrice}
+              totalPrice={item.productTotalPrice}
+            />
+          )}
+        />
+      )}
 
       <BuyButtonBox onBuyPress={onBuyPress} isCartEmpty={isCartEmpty} />
     </View>

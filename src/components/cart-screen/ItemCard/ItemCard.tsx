@@ -55,9 +55,7 @@ export default function ItemCard({
   function deleteHandler() {
     cartContext.deleteItem(id);
   }
-
-  console.log('aa', cartContext);
-
+  
   return (
     <View style={[styles.container, style]}>
       <Image source={{ uri: img }} style={styles.img} />

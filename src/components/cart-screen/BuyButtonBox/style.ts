@@ -3,7 +3,8 @@ import { colors, fontFamilies, fontSizes } from "../../../styles/globalStyles";
 
 export const styles = StyleSheet.create({
   container: {
-    marginVertical: 24,
+    marginTop:16,
+    marginBottom: 24,
     paddingHorizontal: 16,
   },
   textContainer: {
