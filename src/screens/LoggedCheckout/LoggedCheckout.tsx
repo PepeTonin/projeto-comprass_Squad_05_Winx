@@ -6,7 +6,8 @@ import { styles } from "./style";
 import BackButton from "../../components/shared/BackButton/BackButton";
 import Tittle from "../../components/shared/Tittle/Tittle";
 import Button from "../../components/shared/Button/Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../../contexts/cartContext";
 
 type LoggedCheckoutStackParamList = {
   LoggedCheckout: any;
@@ -32,12 +33,18 @@ export default function LoggedCheckout({
     typeofPayment.bankslip
   );
 
+  const cartContext = useContext(CartContext);
+
   const urlImagesShipping: string[] = [
     "https://www.logotipo.pt/wp-content/uploads/2009/10/Artigo-Fedex.jpg",
     "https://t.ctcdn.com.br/OO4DFvvWLOL2Et-eslajieTnr9g=/1200x675/smart/i535351.jpeg",
     "https://fastcashenvios.com.br/assets/images/versions-1.png",
     "https://www.nopcommerce.com/images/thumbs/0014297_shipping-plugin-for-usps.jpeg",
   ];
+
+  function numberToTwoDecimalPlacesString(price: number) {
+    return price.toFixed(2).toString().replace(".", ",");
+  }
 
   return (
     <View style={styles.container}>
@@ -103,12 +110,32 @@ export default function LoggedCheckout({
         />
       </View>
 
-      <Button
-        title="SUBMIT ORDER"
-        onPress={() => {
-          navigation.navigate("SuccessContinue", paymentMethod);
-        }}
-      />
+      <View style={styles.footerSumary}>
+        <View style={styles.footerTextRow}>
+          <Text style={styles.text1}>Order: </Text>
+          <Text style={styles.text2}>
+            {numberToTwoDecimalPlacesString(cartContext.getTotalPrice()) +
+              " R$"}
+          </Text>
+        </View>
+        <View style={styles.footerTextRow}>
+          <Text style={styles.text1}>Delivery: </Text>
+          <Text style={styles.text2}>0 R$</Text>
+        </View>
+        <View style={styles.footerTextRow}>
+          <Text style={styles.text3}>Summary:: </Text>
+          <Text style={styles.text4}>
+            {numberToTwoDecimalPlacesString(cartContext.getTotalPrice()) +
+              " R$"}
+          </Text>
+        </View>
+        <Button
+          title="SUBMIT ORDER"
+          onPress={() => {
+            navigation.navigate("SuccessContinue", paymentMethod);
+          }}
+        />
+      </View>
     </View>
   );
 }

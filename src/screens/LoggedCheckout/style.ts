@@ -4,6 +4,7 @@ import { colors, fontFamilies, fontSizes } from "../../styles/globalStyles";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "space-between",
     marginTop: 30,
   },
   backButton: {
@@ -63,5 +64,35 @@ export const styles = StyleSheet.create({
     width: 100,
     height: 53,
     marginHorizontal: 10,
+  },
+  footerSumary: {
+    paddingHorizontal: 16,
+    paddingVertical: 32,
+  },
+  footerTextRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 6,
+  },
+  text1: {
+    fontFamily: fontFamilies.regularOpenSans,
+    color: colors.gray_500,
+    fontSize: fontSizes.xs,
+  },
+  text2: {
+    fontFamily: fontFamilies.regularOpenSans,
+    color: colors.black,
+    fontSize: fontSizes.s,
+  },
+  text3: {
+    fontFamily: fontFamilies.semiBoldOpenSans,
+    color: colors.gray_500,
+    fontSize: fontSizes.s,
+  },
+  text4: {
+    fontFamily: fontFamilies.semiBoldOpenSans,
+    color: colors.black,
+    fontSize: fontSizes.l,
   },
 });
