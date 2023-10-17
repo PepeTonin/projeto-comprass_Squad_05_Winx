@@ -25,6 +25,13 @@ export const styles = StyleSheet.create({
     left: 16,
     marginBottom: 15,
   },
+  buttonContainer: {
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+  button: {
+    width: 100,
+  },
   buttonBoxes: {
     alignItems: "center",
     alignContent: "center",

@@ -2,12 +2,11 @@ import { FlatList, Pressable, Text, View, Image } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { styles } from "./style";
-import { TokenContext } from "../../contexts/authJWTContext";
-import { useContext, useEffect } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import BackButton from "../../components/shared/BackButton/BackButton";
 import Tittle from "../../components/shared/Tittle/Tittle";
 import Button from "../../components/shared/Button/Button";
+import { useState } from "react";
 
 type LoggedCheckoutStackParamList = {
   LoggedCheckout: any;
@@ -24,13 +23,14 @@ enum typeofPayment {
   pix,
   bankslip,
 }
-let paymentMethod: typeofPayment;
-paymentMethod = typeofPayment.bankslip;
 export default function LoggedCheckout({
   navigation,
   route,
 }: LoggedCheckoutScreenNavigationProp) {
   const address = route.params;
+  const [paymentMethod, setPaymentMethod] = useState<typeofPayment>(
+    typeofPayment.bankslip
+  );
 
   const urlImagesShipping: string[] = [
     "https://www.logotipo.pt/wp-content/uploads/2009/10/Artigo-Fedex.jpg",
@@ -66,6 +66,29 @@ export default function LoggedCheckout({
       </View>
 
       <Text style={styles.textTitleButton}>Payment Method</Text>
+      <View style={styles.buttonContainer}>
+        <Button
+          style={styles.button}
+          title="BankSlip"
+          onPress={() => {
+            setPaymentMethod(typeofPayment.bankslip);
+          }}
+        />
+        <Button
+          style={styles.button}
+          title="Card"
+          onPress={() => {
+            setPaymentMethod(typeofPayment.card);
+          }}
+        />
+        <Button
+          style={styles.button}
+          title="Pix"
+          onPress={() => {
+            setPaymentMethod(typeofPayment.pix);
+          }}
+        />
+      </View>
 
       <Text style={styles.textTitleButton}>Delivery method</Text>
       <View>

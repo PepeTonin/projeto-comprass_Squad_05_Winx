@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>7/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -140,19 +140,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -201,20 +201,20 @@ interface Props {
   amount: number;
   style?: {};
 }
-export default function <span class="fstat-no" title="function not covered" >Card(</span>{ img, name, price, amount, style }: Props) {
-  const [amountCard, setAmountCard] = <span class="cstat-no" title="statement not covered" >useState(amount);</span>
+export default function Card({ img, name, price, amount, style }: Props) {
+  const [amountCard, setAmountCard] = useState(amount);
 &nbsp;
-  function <span class="fstat-no" title="function not covered" >onPressMinus(</span>) {
-<span class="cstat-no" title="statement not covered" >    if (amountCard === 0) {</span>
+  function onPressMinus() {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (amountCard === 0) {
 <span class="cstat-no" title="statement not covered" >      return;</span>
     }
-<span class="cstat-no" title="statement not covered" >    setAmountCard(<span class="fstat-no" title="function not covered" >(c</span>ur) =&gt; <span class="cstat-no" title="statement not covered" >cur - 1)</span>;</span>
+    setAmountCard((cur) =&gt; cur - 1);
   }
 &nbsp;
-  function <span class="fstat-no" title="function not covered" >onPressPlus(</span>) {
-<span class="cstat-no" title="statement not covered" >    setAmountCard(<span class="fstat-no" title="function not covered" >(c</span>ur) =&gt; <span class="cstat-no" title="statement not covered" >cur + 1)</span>;</span>
+  function onPressPlus() {
+    setAmountCard((cur) =&gt; cur + 1);
   }
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;View style={[styles.container, style]}&gt;
       &lt;Image source={{ uri: img }} style={styles.img} /&gt;
       &lt;View style={styles.containerInformation}&gt;
@@ -256,7 +256,7 @@ export default function <span class="fstat-no" title="function not covered" >Car
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-10-17T20:03:40.664Z
+                at 2023-10-17T20:12:32.030Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
