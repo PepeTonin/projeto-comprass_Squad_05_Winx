@@ -2,6 +2,7 @@ import axios from "axios";
 import { PropsWithChildren } from "react";
 
 interface PropsUser {
+  id?: string;
   name?: string;
   email: string;
   password?: string;
@@ -17,10 +18,8 @@ export async function signUp(props: PropsWithChildren<PropsUser>) {
       password: props.password,
       avatar: "https://api.lorem.space/image/face?w=640&h=480&r=867",
     };
-    const response = await axios.post(url, data);
 
-    // if (response.status === 201) {
-    // }
+    await axios.post(url, data);
   } catch (error: any) {
     alert("Erro ao fazer a solicitação" + error);
   }
@@ -46,11 +45,13 @@ export async function signIn(props: PropsWithChildren<PropsUser>) {
             email: props.email,
             password: props.password,
           };
-
           const response = await axios.post(authUrl, data);
           if (response.status === 201) {
-            const access_token = response.data.access_token;
-            return access_token;
+            const receivedData = {
+              token: response.data.access_token,
+              id: userWithMatchingCredentials.id,
+            };
+            return receivedData;
           } else {
             alert("Não foi possível capturar o token");
           }
@@ -125,5 +126,26 @@ export async function changePassword(props: PropsWithChildren<PropsUser>) {
     }
   } catch (error: any) {
     alert("Erro ao fazer a solicitação" + error);
+  }
+}
+
+export async function getSingleUser(props: PropsWithChildren<PropsUser>) {
+  try {
+    let userUrl = `https://api.escuelajs.co/api/v1/users/${props.id}`;
+    const response = await axios.get(userUrl);
+
+    if (response.status === 200) {
+      const data = {
+        email: response.data.email,
+        name: response.data.name,
+        avatar: response.data.avatar,
+      };
+
+      return data;
+    } else {
+      alert("erro profile");
+    }
+  } catch (e) {
+    alert("erro ao capturar" + e);
   }
 }

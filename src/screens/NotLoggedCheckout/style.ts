@@ -4,6 +4,7 @@ import { fontFamilies, fontSizes } from "../../styles/globalStyles";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 30,
   },
   backButton: {
     top: 4,
