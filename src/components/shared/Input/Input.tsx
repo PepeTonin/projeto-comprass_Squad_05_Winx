@@ -52,7 +52,7 @@ export default function AuthInput(props: PropsWithChildren<PropsInput>) {
   }, [text]);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="Input">
       <View
         style={[
           styles.boxInput,

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, memo, useContext, useEffect } from "react";
 import { Text, View, Pressable, Image } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
 import { styles } from "./style";
 import { colors } from "../../../styles/globalStyles";
+import { CartContext } from "../../../contexts/cartContext";
 
 interface ProductCardProps {
   imageUrl: string[];
@@ -14,23 +15,41 @@ interface ProductCardProps {
   productPrice: number;
 }
 
-export default function ProductCard(props: ProductCardProps) {
+function ProductCard(props: ProductCardProps) {
   const [amount, setAmount] = useState<number>(0);
+  const cartContext = useContext(CartContext);
 
   function onMinusPress() {
     if (amount === 0) {
       return;
+    } else if (amount === 1) {
+      cartContext.deleteItem(props.productId);
+    } else {
+      cartContext.removeOneFromExistingItem(props.productId);
     }
     setAmount((cur) => cur - 1);
   }
 
   function onPlusPress() {
+    if (amount === 0) {
+      cartContext.addNewItem({
+        id: props.productId,
+        productName: props.productName,
+        productUnitPrice: props.productPrice,
+      });
+    } else {
+      cartContext.addOneToExistingItem(props.productId);
+    }
     setAmount((cur) => cur + 1);
   }
 
   function numberToTwoDecimalPlacesString(number: number) {
     return number.toFixed(2).toString().replace(".", ",");
   }
+
+  useEffect(() => {
+    setAmount(cartContext.getItemAmount(props.productId));
+  }, [cartContext.items]);
 
   return (
     <View style={styles.outerContainer}>
@@ -63,3 +82,5 @@ export default function ProductCard(props: ProductCardProps) {
     </View>
   );
 }
+
+export default memo(ProductCard);

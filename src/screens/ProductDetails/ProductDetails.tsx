@@ -12,6 +12,7 @@ import RelatedItems from "../../components/product-details/RelatedItems/RelatedI
 import { colors } from "../../styles/globalStyles";
 import ErrorMessage from "../../components/shared/ErrorMessage/ErrorMessage";
 import Button from "../../components/shared/Button/Button";
+import { title } from "process";
 
 type StackParamList = {
   HomeRoutes: any;
@@ -48,10 +49,6 @@ export default function ProductDetails({
 
   function onBackPress() {
     navigation.goBack();
-  }
-
-  function onRelatedItemCardPress(id: number) {
-    console.log("id", id);
   }
 
   async function getProductDetails() {
@@ -136,10 +133,10 @@ Ipsa, consectetur cupiditate voluptas non quidem illum nihil similique doloremqu
 
           <RelatedItems
             categoryId={data?.category.id}
-            onRelatedItemCardPress={onRelatedItemCardPress}
+            onRelatedItemCardPress={()=>{}}
           />
         </ScrollView>
-        <AmountControler />
+        <AmountControler productId={productId} productName={data?.title} productPrice={data?.price}  />
       </View>
     );
   }
